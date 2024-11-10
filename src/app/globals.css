@@ -9,7 +9,11 @@
 
 html,
 body {
-  max-width: 100vw;
+  max-width: 420px;
+  /* 모바일 가로 크기 제한 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  border-radius: 0.5rem;
   min-height: 100%;
   overflow-x: hidden;
 }
