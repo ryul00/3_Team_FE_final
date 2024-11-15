@@ -1,6 +1,6 @@
 "use client";
 
-interface CustomButtonProps {
+interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	$width?: string | number;
 	$height?: string | number;
 	$gap?: string | number;
@@ -36,6 +36,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 	$hoverBackgroundColor,
 	$hoverOpacity = 0.7,
 	children,
+	...props
 }) => {
 	return (
 		<button
@@ -53,6 +54,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 				color: $color,
 				border: $border,
 				borderRadius: $borderRadius,
+				
 			}}
 			className="cursor-pointer transition-opacity duration-100 ease-in-out"
 			onMouseEnter={(e) => {
@@ -67,6 +69,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 				(e.currentTarget as HTMLElement).style.backgroundColor = $backgroundColor;
 				(e.currentTarget as HTMLElement).style.opacity = "1";
 			}}
+			{...props}
 		>
 			{children}
 		</button>
