@@ -24,8 +24,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     // Access Token 설정 (HTTP-only)
     cookieStore.set("accessToken", data.accessToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-
+        secure:true,
         path: "/",
         maxAge: 3600, // 1시간
     });
@@ -33,8 +32,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     // Refresh Token 설정 (HTTP-only)
     cookieStore.set("refreshToken", data.refreshToken, {
         httpOnly: false,
-        secure: process.env.NODE_ENV === "production",
-
+        secure: true,
         path: "/",
         maxAge: 3600 * 24 * 7, // 7일
     });
