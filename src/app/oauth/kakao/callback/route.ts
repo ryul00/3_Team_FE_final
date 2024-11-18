@@ -1,6 +1,8 @@
+'use server'
 import { setAuthCookies } from "@/app/utils/serverCookie";
 import { NextRequest, NextResponse } from "next/server";
 import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 export async function GET(request: NextRequest): Promise<NextResponse> {
     const { searchParams } = new URL(request.url);
     const code = searchParams.get("code");
@@ -15,7 +17,28 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     }
     //access_token 값
     const data = await response.json();
-    console.log("로그인 페이지 데ㅣㅇ터", data.accessToken);
-    setAuthCookies(data);
+    console.log("로그인 페이지 데이터", data.accessToken);
+ 
+    const cookieStore = await cookies();
+
+    // Access Token 설정 (HTTP-only)
+    cookieStore.set("accessToken", data.accessToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+
+        path: "/",
+        maxAge: 3600, // 1시간
+    });
+
+    // Refresh Token 설정 (HTTP-only)
+    cookieStore.set("refreshToken", data.refreshToken, {
+        httpOnly: false,
+        secure: process.env.NODE_ENV === "production",
+
+        path: "/",
+        maxAge: 3600 * 24 * 7, // 7일
+    });
+    console.log(cookieStore)
+
     redirect("/homepage");
 }
