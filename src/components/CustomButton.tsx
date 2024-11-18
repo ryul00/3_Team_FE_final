@@ -17,6 +17,7 @@ interface CustomButtonProps {
 	$hoverBackgroundColor?: string;
 	$hoverOpacity?: string | number;
 	children: React.ReactNode;
+	className?: string; // TailwindCSS 클래스 사용 가능하게 추가함
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -36,6 +37,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 	$hoverBackgroundColor,
 	$hoverOpacity = 0.7,
 	children,
+	className,
 }) => {
 	return (
 		<button
@@ -54,7 +56,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 				border: $border,
 				borderRadius: $borderRadius,
 			}}
-			className="cursor-pointer transition-opacity duration-100 ease-in-out"
+			className={`cursor-pointer transition-opacity duration-100 ease-in-out ${className || ""}`}
 			onMouseEnter={(e) => {
 				if ($hoverBackgroundColor) {
 					(e.currentTarget as HTMLElement).style.backgroundColor = $hoverBackgroundColor;

@@ -1,0 +1,18 @@
+.custom-scrollbar::-webkit-scrollbar {
+	height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+	background-color: #CAA687;
+	border-radius: 1rem;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+	background-color: transparent;
+	margin-top: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button {
+	display: none;
+	/* 양쪽 화살표 제거 */
+}

@@ -1,7 +1,7 @@
 "use client";
 
 // row 구조가 필요할 때 import해서 사용하세요
-// 사용 예시: <CustomRow $width="100%" $alignitems="start" $justifycontent="between"> ~ </CustomRow>
+// 사용 예시: <CustomRow $width="100%" $alignitems="start" $justifycontent="between" className="custom-class"> ~ </CustomRow>
 
 interface CustomRowProps {
 	$width?: string;
@@ -12,6 +12,7 @@ interface CustomRowProps {
 	$justifycontent?: string;
 	$margin?: string;
 	$padding?: string;
+	className?: string;
 	children?: React.ReactNode;
 }
 
@@ -24,6 +25,7 @@ const CustomRow: React.FC<CustomRowProps> = ({
 	$justifycontent = "center",
 	$margin = "0",
 	$padding = "0",
+	className = "",
 	children,
 }) => {
 	return (
@@ -35,8 +37,10 @@ const CustomRow: React.FC<CustomRowProps> = ({
 				gap: $gap,
 				margin: $margin,
 				padding: $padding,
+				justifyContent: $justifycontent,
+				alignItems: $alignitems,
 			}}
-			className={`flex flex-row items-${$alignitems} justify-${$justifycontent}`}
+			className={`flex flex-row ${className}`}
 		>
 			{children}
 		</div>

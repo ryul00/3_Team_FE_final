@@ -11,6 +11,7 @@ interface CustomColumnProps {
 	$justifycontent?: string;
 	$margin?: string;
 	$padding?: string;
+	className?: string;
 	children?: React.ReactNode;
 }
 
@@ -22,6 +23,7 @@ const CustomColumn: React.FC<CustomColumnProps> = ({
 	$justifycontent = "center",
 	$margin = "0",
 	$padding = "0",
+	className = "",
 	children,
 }) => {
 	return (
@@ -33,7 +35,7 @@ const CustomColumn: React.FC<CustomColumnProps> = ({
 				margin: $margin,
 				padding: $padding,
 			}}
-			className={`flex flex-col items-${$alignitems} justify-${$justifycontent}`}
+			className={`flex flex-col items-${$alignitems} justify-${$justifycontent} ${className}`}
 		>
 			{children}
 		</div>

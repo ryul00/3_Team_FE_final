@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   compiler: {
     // styled-components 지원 활성화
-    // styledComponents: true,
+    styledComponents: true,
   },
   devIndicators: {
     buildActivity: false, // 빌드 배지 비활성화

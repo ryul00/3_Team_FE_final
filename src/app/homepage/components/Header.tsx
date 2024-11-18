@@ -1,0 +1,28 @@
+"use client";
+
+import StyledImg from "@/components/StyledImg";
+import CustomRow from "@/components/CustomRow";
+import CustomButton from "@/components/CustomButton";
+import { FaUserCircle } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+
+export default function Header() {
+	const router = useRouter();
+
+	return (
+		<CustomRow $width="100%" $alignitems="center" $justifycontent="center" $gap="20rem">
+			<CustomButton
+				$backgroundColor="transparent"
+				$width="auto"
+				$padding="0"
+			//onClick={() => router.push("/homepage")} // 버튼 클릭 시 /homepage로 이동
+			>
+				<StyledImg src={"/icon_logo.svg"} $width="2rem" $height="2rem" />
+			</CustomButton>
+
+			<CustomButton $backgroundColor="transparent" $width="auto" $padding="0">
+				<FaUserCircle style={{ color: "#544681", fontSize: "2rem" }} />
+			</CustomButton>
+		</CustomRow>
+	);
+}

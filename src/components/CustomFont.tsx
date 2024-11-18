@@ -6,6 +6,7 @@ interface CustomFontProps {
 	$fontweight?: string;
 	$fontfamily?: string;
 	children?: React.ReactNode;
+	className?: string;
 }
 
 const CustomFont: React.FC<React.PropsWithChildren<CustomFontProps>> = ({
@@ -14,6 +15,7 @@ const CustomFont: React.FC<React.PropsWithChildren<CustomFontProps>> = ({
 	$fontweight = "normal",
 	$fontfamily = "none",
 	children,
+	className,
 }) => {
 	return (
 		<a
@@ -23,7 +25,7 @@ const CustomFont: React.FC<React.PropsWithChildren<CustomFontProps>> = ({
 				fontWeight: $fontweight,
 				fontFamily: $fontfamily !== "none" ? $fontfamily : undefined,
 			}}
-			className="text-sm text-gray-100 font-normal"
+			className={`text-sm text-gray-100 font-normal ${className || ""}`}
 		>
 			{children}
 		</a>
