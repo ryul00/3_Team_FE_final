@@ -1,7 +1,7 @@
 import CustomColumn from "@/components/CustomColumn";
 import MyReadingRecord from "./MyReadingRecord";
 import UserInfoBox from "./UserInfoBox";
-import { cookies } from "next/headers";
+
 
 export default function page() {
 

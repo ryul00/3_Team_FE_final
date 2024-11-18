@@ -3,14 +3,17 @@ import CustomButton from "@/components/CustomButton";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
 import StyledImg from "@/components/StyledImg";
-import { unLinkUser } from "../actions/user.action";
+import { fetchData } from "@/api/fetchData";
 import { useState } from "react";
-
+import { unLinkUser } from "../actions/user.action";
 const UserInfoBox = () => {
     const [isModalOpen, setIsModalOpen] = useState<Boolean>(false);
+ 
+
     const onModalHandler = () => {
         setIsModalOpen(true);
     };
+
     return (
         <CustomRow $justifycontent="center" $gap="8rem" $width="100%">
             <CustomRow $width="30%">
@@ -31,9 +34,10 @@ const UserInfoBox = () => {
                 <CustomButton $color="#7A6B52" $border="1px solid #7A6B52" onClick={() => unLinkUser()}>
                     <span className="font-bold">회원탈퇴</span>
                 </CustomButton>
-                {isModalOpen == true ? <div className="bg-black text-white w-[300px] h-52 absolute right-1/3">모달</div> : ""}
+                {isModalOpen && <div className="bg-black text-white w-[300px] h-52 absolute right-1/3">모달</div>}
             </CustomColumn>
         </CustomRow>
     );
 };
+
 export default UserInfoBox;
