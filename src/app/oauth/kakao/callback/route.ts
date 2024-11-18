@@ -1,4 +1,4 @@
-import { setAuthCookies } from "@/app/actions/serverCookie";
+import { setAuthCookies } from "@/app/utils/serverCookie";
 import { NextRequest, NextResponse } from "next/server";
 import { redirect } from "next/navigation";
 export async function GET(request: NextRequest): Promise<NextResponse> {
