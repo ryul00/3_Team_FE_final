@@ -1,8 +1,13 @@
+"use client";
+
+import React, { useState } from "react";
 import CustomColumn from "@/components/CustomColumn";
 import CustomFont from "@/components/CustomFont";
 import CustomRow from "@/components/CustomRow";
 import CustomBox from "@/components/CustomBox";
 import CustomButton from "@/components/CustomButton";
+
+import ManageBookMarkModal from "./bookmarkmodal/ManageBookMarkModal";
 
 const bookmarks = [
 	{ page: "12쪽", text: "박제가 되어버린 천재를 아시오?" },
@@ -17,6 +22,16 @@ const truncateText = (text: string, limit: number = 20): string => {
 };
 
 export default function BookMarks() {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const handleOpenModal = () => {
+		setIsModalOpen(true);
+	};
+
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+	};
+
 	return (
 		<CustomColumn $width="90%" $gap="0.5rem">
 			<CustomRow $width="100%" $alignitems="center" $justifycontent="space-between">
@@ -30,6 +45,7 @@ export default function BookMarks() {
 					$alignItems="center"
 					$justifyContent="center"
 					$padding="0.2rem 0.5rem"
+					onClick={handleOpenModal}
 				>
 					<CustomFont $color="#7A6B52" $font="0.8rem" $fontweight="bold">책갈피 관리</CustomFont>
 				</CustomButton>
@@ -55,6 +71,7 @@ export default function BookMarks() {
 					))}
 				</CustomColumn>
 			</CustomBox>
+			{isModalOpen && <ManageBookMarkModal onClose={handleCloseModal} />}
 		</CustomColumn>
 	);
 }

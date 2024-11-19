@@ -7,7 +7,7 @@ import CustomRow from "@/components/CustomRow";
 import ArrowButton from "@/app/homepage/components/ArrowButton";
 import StyledImg from "@/components/StyledImg";
 
-import BookMarkModal from "./BookMarkModal";
+import BookMarkModal from "./bookmarkmodal/BookMarkModal";
 
 export default function AddBookMark() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
