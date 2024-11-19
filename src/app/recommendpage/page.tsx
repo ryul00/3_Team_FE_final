@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
 import Header from "../homepage/components/Header";
@@ -12,9 +13,11 @@ import YourTema from "./components/YourTema";
 import ArrowButton from "../homepage/components/ArrowButton";
 
 export default function RecommendPage() {
+	const router = useRouter();
 	const [selectedEmotions, setSelectedEmotions] = useState<string[]>([]);
 	const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
 	const [selectedThemes, setSelectedThemes] = useState<string[]>([]);
+	const [loadingMessage, setLoadingMessage] = useState<string>("");
 
 	const handleGPTTest = async () => {
 		try {
@@ -30,7 +33,8 @@ export default function RecommendPage() {
 
 			if (response.ok) {
 				const data = await response.json();
-				console.log('Chat GPT 요청 성공:', data.message); // 나중에 message를 Loading으로 넘기도록 수정하기
+				setLoadingMessage(data.message); // message를 상태에 저장
+				router.push(`/loadingpage?message=${encodeURIComponent(data.message)}`);
 			} else {
 				console.log('API 요청 실패. 상태 코드:', response.status);
 			}
@@ -38,7 +42,6 @@ export default function RecommendPage() {
 			console.error('API 요청 오류:', error);
 		}
 	};
-
 
 	return (
 		<CustomColumn
