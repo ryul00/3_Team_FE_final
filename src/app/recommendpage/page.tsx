@@ -12,6 +12,33 @@ import YourTema from "./components/YourTema";
 import ArrowButton from "../homepage/components/ArrowButton";
 
 export default function RecommendPage() {
+	const [selectedEmotions, setSelectedEmotions] = useState<string[]>([]);
+	const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+	const [selectedThemes, setSelectedThemes] = useState<string[]>([]);
+
+	const handleGPTTest = async () => {
+		try {
+			const response = await fetch('/recommendpage/api/openAi', {
+				method: 'POST',
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					emotions: selectedEmotions,
+					genres: selectedGenres,
+					themes: selectedThemes,
+				}),
+			});
+
+			if (response.ok) {
+				const data = await response.json();
+				console.log('Chat GPT 요청 성공:', data.message); // 나중에 message를 Loading으로 넘기도록 수정하기
+			} else {
+				console.log('API 요청 실패. 상태 코드:', response.status);
+			}
+		} catch (error) {
+			console.error('API 요청 오류:', error);
+		}
+	};
+
 
 	return (
 		<CustomColumn
@@ -31,9 +58,10 @@ export default function RecommendPage() {
 				</p>
 			</CustomColumn>
 
-			<YourFeeling />
-			<YourGenre />
-			<YourTema />
+			<YourFeeling setSelectedEmotions={setSelectedEmotions} />
+			<YourGenre setSelectedGenres={setSelectedGenres} />
+			<YourTema setSelectedThemes={setSelectedThemes} />
+
 			<ArrowButton
 				imagePath="/back_button.svg"
 				width="w-[15rem]"
@@ -41,6 +69,7 @@ export default function RecommendPage() {
 				text="다음으로"
 				textSize="text-lg"
 				textWeight="font-bold"
+				onClick={handleGPTTest}
 			/>
 		</CustomColumn>
 	);

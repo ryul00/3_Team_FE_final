@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
 import CustomButton from "@/components/CustomButton";
 
-const emotions = ["소설", "에세이", "시", "교양서적"];
+const genre = ["소설", "에세이", "시", "교양서적"];
 
 const CustomStyledButton = ({
-	emotion,
+	genre,
 	isActive,
 	onClick,
 }: {
-	emotion: string;
+	genre: string;
 	isActive: boolean;
 	onClick: () => void;
 }) => {
@@ -25,28 +25,36 @@ const CustomStyledButton = ({
 			$alignItems="center"
 			$justifyContent="center"
 			$padding="0.5rem"
-			className={`transition-colors duration-300 ${isActive ? "text-white" : "text-[#856FCA]"
-				}`}
+			className={`transition-colors duration-300 ${isActive ? "text-white" : "text-[#856FCA]"}`}
 			onClick={onClick}
 		>
-			<span className="font-bold text-base">{emotion}</span>
+			<span className="font-bold text-base">{genre}</span>
 		</CustomButton>
 	);
 };
 
-export default function YourGenre() {
+export default function YourGenre({
+	setSelectedGenres,
+}: {
+	setSelectedGenres: React.Dispatch<React.SetStateAction<string[]>>;
+}) {
 	const [activeButtons, setActiveButtons] = useState<string[]>([]);
 
-	const handleButtonClick = (emotion: string) => {
+	const handleButtonClick = (genre: string) => {
 		setActiveButtons((prevState) =>
-			prevState.includes(emotion)
-				? prevState.filter((item) => item !== emotion) // 클릭 해제
-				: [...prevState, emotion] // 클릭 활성화
+			prevState.includes(genre)
+				? prevState.filter((item) => item !== genre) // 클릭 해제
+				: [...prevState, genre] // 클릭 활성화
 		);
 	};
 
-	const itemsPerRow = 4; // 한 행(row)에 배치할 버튼 개수
-	const numberOfRows = Math.ceil(emotions.length / itemsPerRow); // 필요한 행의 개수 계산
+	// activeButtons 상태가 변경될 때 상위 컴포넌트 상태 업데이트 !!
+	useEffect(() => {
+		setSelectedGenres(activeButtons);
+	}, [activeButtons, setSelectedGenres]);
+
+	const itemsPerRow = 4;
+	const numberOfRows = Math.ceil(genre.length / itemsPerRow); // 필요한 행의 개수 계산
 
 	return (
 		<CustomColumn $width="90%" $alignitems="center" $justifycontent="center" $gap="1rem">
@@ -57,14 +65,14 @@ export default function YourGenre() {
 			<CustomColumn $width="100%">
 				{Array.from({ length: numberOfRows }, (_, rowIndex) => (
 					<CustomRow key={rowIndex} $width="100%" $gap="0.5rem">
-						{emotions
+						{genre
 							.slice(rowIndex * itemsPerRow, (rowIndex + 1) * itemsPerRow) // 해당 행의 버튼만 슬라이스
-							.map((emotion) => (
+							.map((genre) => (
 								<CustomStyledButton
-									key={emotion}
-									emotion={emotion}
-									isActive={activeButtons.includes(emotion)}
-									onClick={() => handleButtonClick(emotion)}
+									key={genre}
+									genre={genre}
+									isActive={activeButtons.includes(genre)}
+									onClick={() => handleButtonClick(genre)}
 								/>
 							))}
 					</CustomRow>

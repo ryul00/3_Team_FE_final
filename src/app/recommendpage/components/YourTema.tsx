@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
 import CustomButton from "@/components/CustomButton";
 
-const emotions = [
+const tema = [
 	"로맨스",
 	"스릴러",
 	"추리",
@@ -17,11 +17,11 @@ const emotions = [
 ];
 
 const CustomStyledButton = ({
-	emotion,
+	tema,
 	isActive,
 	onClick,
 }: {
-	emotion: string;
+	tema: string;
 	isActive: boolean;
 	onClick: () => void;
 }) => {
@@ -34,25 +34,33 @@ const CustomStyledButton = ({
 			$alignItems="center"
 			$justifyContent="center"
 			$padding="0.5rem"
-			className={`transition-colors duration-300 ${isActive ? "text-white" : "text-[#856FCA]"
-				}`}
+			className={`transition-colors duration-300 ${isActive ? "text-white" : "text-[#856FCA]"}`}
 			onClick={onClick}
 		>
-			<span className="font-bold text-base">{emotion}</span>
+			<span className="font-bold text-base">{tema}</span>
 		</CustomButton>
 	);
 };
 
-export default function YourTema() {
+export default function YourTema({
+	setSelectedThemes,
+}: {
+	setSelectedThemes: React.Dispatch<React.SetStateAction<string[]>>;
+}) {
 	const [activeButtons, setActiveButtons] = useState<string[]>([]);
 
-	const handleButtonClick = (emotion: string) => {
+	const handleButtonClick = (tema: string) => {
 		setActiveButtons((prevState) =>
-			prevState.includes(emotion)
-				? prevState.filter((item) => item !== emotion) // 클릭 해제
-				: [...prevState, emotion] // 클릭 활성화
+			prevState.includes(tema)
+				? prevState.filter((item) => item !== tema) // 클릭 해제
+				: [...prevState, tema] // 클릭 활성화
 		);
 	};
+
+	// activeButtons 상태가 변경될 때 상위 컴포넌트 상태 업데이트 !!
+	useEffect(() => {
+		setSelectedThemes(activeButtons);
+	}, [activeButtons, setSelectedThemes]);
 
 	return (
 		<CustomColumn $width="90%" $alignitems="center" $justifycontent="center" $gap="1rem">
@@ -63,12 +71,12 @@ export default function YourTema() {
 			<CustomColumn $width="100%">
 				{Array.from({ length: 2 }, (_, i) => (
 					<CustomRow key={i} $width="100%" $gap="0.5rem">
-						{emotions.slice(i * 4, (i + 1) * 4).map((emotion) => (
+						{tema.slice(i * 4, (i + 1) * 4).map((tema) => (
 							<CustomStyledButton
-								key={emotion}
-								emotion={emotion}
-								isActive={activeButtons.includes(emotion)}
-								onClick={() => handleButtonClick(emotion)}
+								key={tema}
+								tema={tema}
+								isActive={activeButtons.includes(tema)}
+								onClick={() => handleButtonClick(tema)}
 							/>
 						))}
 					</CustomRow>
