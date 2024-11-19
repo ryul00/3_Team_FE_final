@@ -8,6 +8,7 @@ import CustomRow from "@/components/CustomRow";
 import CustomBox from "@/components/CustomBox";
 import CustomButton from "@/components/CustomButton";
 
+import DeskHeader from "./components/DeskHeader";
 import NowReadingBook from "./components/NowReadingBook";
 import Timer from "./components/Timer";
 import BookMarks from "./components/BookMarks";
@@ -24,6 +25,7 @@ export default function ReadingDeskPage() {
 			$gap="2rem"
 		>
 			<CustomColumn $width='100%' $gap='0.5rem'>
+				<DeskHeader />
 				<NowReadingBook />
 				<Timer />
 			</CustomColumn>
