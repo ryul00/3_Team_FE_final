@@ -11,6 +11,7 @@ interface ArrowButtonProps {
 	text: string;
 	textSize?: "text-sm" | "text-md" | "text-lg" | "text-xl";
 	textWeight?: "font-normal" | "font-medium" | "font-bold";
+	onClick?: () => void;
 }
 
 export default function ArrowButton({
@@ -20,6 +21,7 @@ export default function ArrowButton({
 	text,
 	textSize = "text-sm",
 	textWeight = "font-bold",
+	onClick,
 }: ArrowButtonProps) {
 	return (
 		<CustomButton
@@ -27,6 +29,7 @@ export default function ArrowButton({
 			$height="auto"
 			$padding="0"
 			className="relative z-0 w-auto h-8 bg-transparent flex items-center justify-center"
+			onClick={onClick}
 		>
 			<div className={`relative ${width} ${height} overflow-hidden z-1`}>
 				<StyledImg

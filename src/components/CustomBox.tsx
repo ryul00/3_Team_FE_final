@@ -19,6 +19,7 @@ interface CustomBoxProps {
 	$overflowx?: "visible" | "hidden" | "scroll" | "auto";
 	$zindex?: string;
 	children: React.ReactNode;
+	className?: string;
 }
 
 const CustomBox: React.FC<CustomBoxProps> = ({
@@ -39,6 +40,7 @@ const CustomBox: React.FC<CustomBoxProps> = ({
 	$overflowy = "auto",
 	$overflowx = "auto",
 	$zindex = "3",
+	className = "",
 	children,
 }) => {
 	return (
@@ -59,7 +61,7 @@ const CustomBox: React.FC<CustomBoxProps> = ({
 				zIndex: $zindex ? parseInt($zindex) : undefined,
 			}}
 			className={`${$display === "flex" ? "flex" : ""
-				} flex-${$flexdirection} items-${$alignitems} justify-${$justifycontent}`}
+				} flex-${$flexdirection} items-${$alignitems} justify-${$justifycontent} ${className}`}
 		>
 			{children}
 		</div>
