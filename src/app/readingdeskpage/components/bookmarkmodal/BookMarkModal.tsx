@@ -11,7 +11,7 @@ import ModalTextArea from "@/components/modal/ModalTextArea";
 import ArrowButton from "@/app/homepage/components/ArrowButton";
 
 interface BookMarkModalProps {
-	onClose: () => void; // 모달 닫기 함수
+	onClose: () => void;
 }
 
 export default function BookMarkModal({ onClose }: BookMarkModalProps) {
@@ -34,7 +34,8 @@ export default function BookMarkModal({ onClose }: BookMarkModalProps) {
 						imagePath="/modal_back_button.svg"
 						width="w-[10rem]"
 						height="h-[4rem]"
-						text="새로운 책 가져오기"
+						text="여기에 책갈피 꽂기"
+						onClick={onClose}
 					/>
 				</CustomRow>
 			</CustomColumn>

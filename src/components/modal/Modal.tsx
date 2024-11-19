@@ -35,10 +35,13 @@ export default function Modal({ children, onClose }: ModalProps) {
 						</CustomRow>
 					</CustomBox>
 
-					<CustomColumn $width="90%" $alignitems="center" $justifycontent="center">
-						<div>{children}</div>
-					</CustomColumn>
+					<CustomBox $backgroundcolor="transparent" $padding="0.5rem" $width="100%" $height="auto">
+						<CustomColumn $width="90%" $alignitems="center" $justifycontent="center">
+							<div>{children}</div>
+						</CustomColumn>
+					</CustomBox>
 				</CustomColumn>
+
 			</CustomBoxRound>
 		</div>
 	);
