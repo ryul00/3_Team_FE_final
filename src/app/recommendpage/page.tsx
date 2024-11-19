@@ -34,6 +34,7 @@ export default function RecommendPage() {
 			if (response.ok) {
 				const data = await response.json();
 				setLoadingMessage(data.message); // message를 상태에 저장
+				localStorage.setItem("loadingMessage", data.message);
 				router.push(`/loadingpage?message=${encodeURIComponent(data.message)}`);
 			} else {
 				console.log('API 요청 실패. 상태 코드:', response.status);

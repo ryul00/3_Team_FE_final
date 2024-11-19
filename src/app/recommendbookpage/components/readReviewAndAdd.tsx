@@ -64,7 +64,7 @@ export default function ReadReviewAndAdd() {
 	};
 
 	return (
-		<>
+		<CustomColumn $width="100%" $gap="1rem">
 
 			<p className="text-[#544681] font-bold text-sm ">
 				다른 사람들의 한 줄 감상을 참고하여 책장에 담아보세요.
@@ -112,6 +112,6 @@ export default function ReadReviewAndAdd() {
 					</CustomColumn>
 				))}
 			</CustomRow>
-		</>
+		</CustomColumn>
 	);
 }
