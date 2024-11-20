@@ -54,14 +54,21 @@ const KakaoMap = () => {
 
 				const bounds = new window.kakao.maps.LatLngBounds();
 
-				// 마커 이미지 설정
+				// 사용자 마커 이미지 설정
 				const markerImage = new window.kakao.maps.MarkerImage(
 					"/icon_marker.svg",
 					new window.kakao.maps.Size(32, 34),
 					{ offset: new window.kakao.maps.Point(16, 34) } // 마커의 기준 좌표 (이미지의 중심점)
 				);
 
-				// 사용자 위치
+				// 도서관 마커 이미지 설정
+				const libImage = new window.kakao.maps.MarkerImage(
+					"/icon_logo.svg",
+					new window.kakao.maps.Size(32, 34),
+					{ offset: new window.kakao.maps.Point(16, 34) } // 마커의 기준 좌표 (이미지의 중심점)
+				);
+
+				// 사용자 위치 마커
 				const userMarker = new window.kakao.maps.Marker({
 					position: new window.kakao.maps.LatLng(lat, lng),
 					map: map,
@@ -84,6 +91,7 @@ const KakaoMap = () => {
 						const libraryMarker = new window.kakao.maps.Marker({
 							position: markerPosition,
 							map: map,
+							image: libImage,
 						});
 
 						// 마커에 클릭 이벤트 추가
