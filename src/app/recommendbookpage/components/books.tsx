@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
 import CustomFont from "@/components/CustomFont";
+import { sendBooksToAPI } from "../api/sendBooksToAPI";
 
 interface Book {
 	title: string;
@@ -11,6 +12,10 @@ interface Book {
 }
 
 export default function Books({ books }: { books: Book[] }) {
+	useEffect(() => {
+		sendBooksToAPI(books);
+	}, [books]);
+
 	return (
 		<CustomColumn $width="100%" $alignitems="center" $justifycontent="center" $gap="2rem">
 			<p className="text-[#544681] font-bold text-base">
