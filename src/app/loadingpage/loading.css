@@ -1,0 +1,22 @@
+@keyframes swing {
+	0% {
+		transform: translateX(0);
+	}
+
+	33% {
+		transform: translateX(20px);
+	}
+
+	66% {
+		transform: translateX(-20px);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.swing-animation {
+	display: inline-block;
+	animation: swing 3s ease-in-out infinite;
+}

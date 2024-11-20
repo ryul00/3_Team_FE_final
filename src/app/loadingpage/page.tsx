@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 
 import CustomColumn from "@/components/CustomColumn";
 import StyledImg from "@/components/StyledImg";
+import "./loading.css";
 
 export default function LoadingPage() {
 	const searchParams = useSearchParams();
@@ -58,8 +59,10 @@ export default function LoadingPage() {
 			$justifycontent="center"
 			$gap="4rem"
 		>
-			<StyledImg src={"/icon_logo.svg"} />
-			<CustomColumn $gap="1rem">
+			<div className="swing-animation">
+				<StyledImg src={"/icon_logo.svg"} />
+			</div>
+			<CustomColumn $gap="1rem" className="swing-animation">
 				<p className="text-[#856FCA] font-bold text-base">
 					별책부록 사서가 열심히 책을 찾고 있어요.
 				</p>
