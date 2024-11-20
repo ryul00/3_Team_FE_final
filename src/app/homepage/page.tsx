@@ -16,6 +16,15 @@ export default function Home() {
 	return (
 		<CustomColumn $width="100%" $alignitems="center" $justifycontent="flex-start" $padding="0" $gap='4vh' className="relative h-screen">
 			<Header />
+			<CustomRow $width="90%" $justifycontent="flex-start" $alignitems="center">
+				<ArrowButton
+					imagePath="/back_nutton_library.svg"
+					width="w-[10rem]"
+					height="h-[4rem]"
+					text="내 근처 도서관"
+					onClick={() => router.push("/mynearlibrary")}
+				/>
+			</CustomRow>
 			<Stars />
 			<BookShelf />
 			<CustomRow $width="90%" $justifycontent="flex-end" $alignitems="center">
