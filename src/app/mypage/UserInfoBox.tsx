@@ -12,7 +12,7 @@ import { useState } from "react";
 import { unLinkUser } from "../actions/user.action";
 import CustomFont from "@/components/CustomFont";
 
-const UserInfoBox = ({ kakaoId }:{kakaoId:number}) => {
+const UserInfoBox = ({ kakaoId }:{kakaoId:string|undefined}) => {
     const [isUnlinkModalOpen, setIsUnlinkModalOpen] = useState(false);
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
