@@ -7,8 +7,11 @@ export const LoginBtn = () => {
     };
 
     return (
-        <div className="flex justify-center p-20">
-            <Image src="/loginBtn.png"alt="로그인 이미지" onClick={kakaoLogin} width="295" height="72" className="hover:cursor-pointer" />
+        <div className="flex justify-between p-20 hover:cursor-pointer  group" onClick={kakaoLogin} >
+            <div className="flex  bg-[#FEE500]  items-center text-base font-semibold py-5 px-10 gap-3  rounded-full border-2 border-transparent hover:border-2 hover:bg-white group-hover:border-[#fee500] hover:text-[#fee500]">
+            <Image src={'chatbubble.svg'} width={30} height={30} alt='채팅 아이콘' />
+                <span className=" inline-block  flex-1 whitespace-nowrap text-2xl">카카오 로그인</span>
+            </div>
         </div>
     );
 };
