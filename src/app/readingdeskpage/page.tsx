@@ -1,16 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import CustomColumn from "@/components/CustomColumn";
-import CustomFont from "@/components/CustomFont";
 import StyledImg from "@/components/StyledImg";
-import CustomRow from "@/components/CustomRow";
-import CustomBox from "@/components/CustomBox";
-import CustomButton from "@/components/CustomButton";
 
 import DeskHeader from "./components/DeskHeader";
 import NowReadingBook from "./components/NowReadingBook";
 import Timer from "./components/Timer";
+import Radio from "./components/Radio";
 import BookMarks from "./components/BookMarks";
 import AddBookMark from "./components/AddBookMark";
 
@@ -30,6 +27,7 @@ export default function ReadingDeskPage() {
 				<Timer />
 			</CustomColumn>
 			<BookMarks />
+			<Radio />
 			<AddBookMark />
 			<StyledImg src={'/bottom_banner_readingdesk.svg'} />
 		</CustomColumn>
