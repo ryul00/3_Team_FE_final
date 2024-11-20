@@ -1,8 +1,5 @@
 "use client";
 
-// column 구조가 필요할 때 import해서 사용하세요
-// 사용 예시: <CustomColumn $width="100%" $alignitems="start" $justifycontent="between"> ~ </CustomColumn>
-
 interface CustomColumnProps {
 	$width?: string;
 	$height?: string;
@@ -26,6 +23,24 @@ const CustomColumn: React.FC<CustomColumnProps> = ({
 	className = "",
 	children,
 }) => {
+	// TailwindCSS 지원 클래스 설정
+	const justifyClass = {
+		"flex-start": "justify-start",
+		"flex-end": "justify-end",
+		"center": "justify-center",
+		"space-between": "justify-between",
+		"space-around": "justify-around",
+		"space-evenly": "justify-evenly",
+	}[$justifycontent] || "justify-center";
+
+	const alignClass = {
+		"start": "items-start",
+		"end": "items-end",
+		"center": "items-center",
+		"stretch": "items-stretch",
+		"baseline": "items-baseline",
+	}[$alignitems] || "items-center";
+
 	return (
 		<div
 			style={{
@@ -35,7 +50,7 @@ const CustomColumn: React.FC<CustomColumnProps> = ({
 				margin: $margin,
 				padding: $padding,
 			}}
-			className={`flex flex-col items-${$alignitems} justify-${$justifycontent} ${className}`}
+			className={`flex flex-col ${alignClass} ${justifyClass} ${className}`}
 		>
 			{children}
 		</div>

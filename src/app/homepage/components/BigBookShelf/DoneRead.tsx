@@ -5,8 +5,10 @@ import CustomBox from "@/components/CustomBox";
 import CustomFont from "@/components/CustomFont";
 import CustomRow from "@/components/CustomRow";
 import CustomButton from "@/components/CustomButton";
+import { useRouter } from "next/navigation";
 
 export default function DoneRead() {
+	const router = useRouter();
 	return (
 		<>
 			<CustomRow $width="100%" $justifycontent="flex-start" $alignitems="center">
@@ -23,6 +25,7 @@ export default function DoneRead() {
 							$width="auto"
 							$height="auto"
 							$padding="0"
+							onClick={() => router.push("/readingdeskpage")}
 						>
 							<div className="bg-[#D9D9D9] w-[100px] h-[100%] flex-shrink-0 rounded-md">
 								책{index + 1}

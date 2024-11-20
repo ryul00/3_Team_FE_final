@@ -6,8 +6,11 @@ import CustomRow from "@/components/CustomRow";
 import CustomBox from "@/components/CustomBox";
 import CustomFont from "@/components/CustomFont";
 import CustomButton from "@/components/CustomButton";
+import { useRouter } from "next/navigation";
 
 export default function BookShelf() {
+	const router = useRouter();
+
 	return (
 		<>
 			<CustomRow $width="90%" $justifycontent="flex-end" $alignitems="center">
@@ -26,6 +29,7 @@ export default function BookShelf() {
 								$width="auto"
 								$height="auto"
 								$padding="0"
+								onClick={() => router.push("/readingdeskpage")}
 							>
 								<div className="bg-[#D9D9D9] w-[65px] h-full flex-shrink-0 rounded-md"></div>
 							</CustomButton>

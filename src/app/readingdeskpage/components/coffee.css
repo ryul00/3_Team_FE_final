@@ -1,0 +1,46 @@
+@keyframes smoke {
+	0% {
+		opacity: 0.3;
+		transform: translateY(0) scale(1);
+	}
+
+	50% {
+		opacity: 0.6;
+		transform: translateY(-20px) scale(1.2);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(-40px) scale(1.5);
+	}
+}
+
+.smoke-container {
+	position: relative;
+	display: inline-block;
+}
+
+.smoke {
+	position: absolute;
+	top: -40px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 2rem;
+	height: 2rem;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 20%, rgba(255, 255, 255, 0) 80%);
+	border-radius: 50%;
+	animation: smoke 2s ease-in-out infinite;
+	pointer-events: none;
+}
+
+.smoke-1 {
+	animation-delay: 0s;
+}
+
+.smoke-2 {
+	animation-delay: 0.5s;
+}
+
+.smoke-3 {
+	animation-delay: 1s;
+}

@@ -15,12 +15,12 @@ export default function Header() {
 				$backgroundColor="transparent"
 				$width="auto"
 				$padding="0"
-			//onClick={() => router.push("/homepage")} // 버튼 클릭 시 /homepage로 이동
+				onClick={() => router.push("/homepage")}
 			>
 				<StyledImg src={"/icon_logo.svg"} $width="2rem" $height="2rem" />
 			</CustomButton>
 
-			<CustomButton $backgroundColor="transparent" $width="auto" $padding="0">
+			<CustomButton $backgroundColor="transparent" $width="auto" $padding="0" onClick={() => router.push("/mypage")}>
 				<FaUserCircle style={{ color: "#544681", fontSize: "2rem" }} />
 			</CustomButton>
 		</CustomRow>

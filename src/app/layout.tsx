@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Container from "@/components/Container";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "별책부록",
@@ -9,6 +10,12 @@ export const metadata: Metadata = {
     icon: "/Icon_TabLogo.png",
   },
 };
+
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
 
 export default function RootLayout({
   children,
@@ -22,6 +29,11 @@ export default function RootLayout({
           {children}
         </Container>
       </body>
+      <Script src="https://developers.kakao.com/sdk/js/kakao.js" async />
+      <Script
+        type="text/javascript"
+        src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KAKAOAPI}&autoload=false&libraries=services,clusterer,drawing`}
+      />
     </html>
   );
 }
