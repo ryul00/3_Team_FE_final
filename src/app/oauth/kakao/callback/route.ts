@@ -17,12 +17,19 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     }
     //access_token 값
     const data = await response.json();
-    console.log("로그인 페이지 데이터", data.accessToken);
+    console.log("로그인 페이지 데이터", data);
  
     const cookieStore = await cookies();
 
     // Access Token 설정 (HTTP-only)
     cookieStore.set("accessToken", data.accessToken, {
+        httpOnly: true,
+        secure:true,
+        path: "/",
+        maxAge: 3600, // 1시간
+    });
+      // Access Token 설정 (HTTP-only)
+      cookieStore.set("kakaoId", data.kakaoId, {
         httpOnly: true,
         secure:true,
         path: "/",
