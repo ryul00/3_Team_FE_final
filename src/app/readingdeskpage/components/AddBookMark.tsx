@@ -8,6 +8,7 @@ import ArrowButton from "@/app/homepage/components/ArrowButton";
 import StyledImg from "@/components/StyledImg";
 
 import BookMarkModal from "./bookmarkmodal/BookMarkModal";
+import "./coffee.css";
 
 export default function AddBookMark() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,8 +34,14 @@ export default function AddBookMark() {
 					/>
 				</CustomRow>
 
-				<CustomRow $width="100%" $alignitems="center" $justifycontent="flex-start" $height="auto">
+				<CustomRow $width="100%" $alignitems="flex-end" $justifycontent="flex-start" $height="auto">
 					<StyledImg src="/icon_readingdesk_book.svg" />
+					<div className="smoke-container" style={{ width: "7rem", height: "7rem" }}>
+						<div className="smoke smoke-1"></div>
+						<div className="smoke smoke-2"></div>
+						<div className="smoke smoke-3"></div>
+						<StyledImg src="/icon_coffee.png" $width="7rem" />
+					</div>
 				</CustomRow>
 			</CustomColumn>
 
