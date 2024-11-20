@@ -11,7 +11,7 @@ export async function fetchData(endPoint: string, method: "GET" | "POST" | "DELE
         "Content-Type": "application/json",
     };
 
-    headers["Authorization"] = `Bearer ${accessToken?.value}`;
+    headers["Authorization"] = `${accessToken?.value}`;
     console.log("헤더", headers);
 
     const response = await fetch(url, {
@@ -20,7 +20,6 @@ export async function fetchData(endPoint: string, method: "GET" | "POST" | "DELE
         body: body ? JSON.stringify(body) : undefined,
         credentials: "include",
     });
-
 
     if (!response.ok) {
         console.error("요청을 다시 확인 해주세여", response.statusText);
