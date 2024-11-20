@@ -59,13 +59,17 @@ const BackgroundBook = ({ title }: { title: string }) => {
                         case index === 6 && title === "부":
                         case index === 9 && title === "록":
                             content = (
-                                <div className="text-white font-bold text-5xl w-28 flex justify-center items-center" key={index}>
+                                <div
+                                    className="text-white font-bold text-5xl opacity-0 w-28 flex justify-center items-center translate-y-5 transition-opacity duration-700 ease-in-out transform animate-fadeIn"
+                                    key={index}
+                                    style={{ animation: `fadeIn 1s ease forwards ${index * 0.1}s` }} 
+                                >
                                     {title}
                                 </div>
                             );
                             break;
                         case index === 9 && title === "로고":
-                            content = <StyledImg src="logo.svg" $width="30px" $height="100%" $alignSelf="flex-end"  key={index} />;
+                            content = <StyledImg src="logo.svg" $width="30px" $height="100%" $alignSelf="flex-end" key={index} />;
                             break;
                         default:
                             content = <div key={index} style={{ width: `${width}px`, height: `${getRandomHeight()}px`, background: getRandomGradient() }} className="self-end"></div>;
