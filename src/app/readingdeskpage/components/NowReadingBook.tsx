@@ -8,10 +8,12 @@ import Modal from "@/components/modal/Modal";
 
 import { addFavoriteAPI } from "../api/addFavoriteAPI";
 import CustomButton from "@/components/CustomButton";
+import CustomColumn from "@/components/CustomColumn";
 
 export default function NowReadingBook({ book }: { book: any }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [modalMessage, setModalMessage] = useState<string | null>(null);
+	const [isFavorite, setIsFavorite] = useState(false); // 별의 활성화
 
 	const handleOpenModal = (message: string) => {
 		setModalMessage(message);
@@ -30,25 +32,21 @@ export default function NowReadingBook({ book }: { book: any }) {
 			const response = await addFavoriteAPI(book.shelfBookId);
 			if (response.status === 200) {
 				handleOpenModal("또 읽을 책으로 추가하였습니다!");
+				setIsFavorite(true); // 요청 성공 시 별 버튼 노랗게 됨
 			}
-		} catch (error: unknown) {
-			if (
-				typeof error === "object" &&
-				error !== null &&
-				"response" in error &&
-				error.response &&
-				typeof error.response === "object" &&
-				"status" in error.response
-			) {
-				const responseError = error as { response: { status: number } };
-				if (responseError.response.status === 400) {
-					handleOpenModal("책을 다 읽으신 후 또 읽을 책으로 추가하실 수 있습니다!");
-				}
-			} else {
-				console.error("예기치 못한 에러:", error);
-			}
+		} catch (error: any) {
+			console.log("에러 객체:", error);
+
+			const message =
+				typeof error === "object" && error.message
+					? "책을 다 읽으신 후 또 읽을 책으로 추가가 가능합니다!"
+					: "알 수 없는 오류가 발생했습니다.";
+
+			handleOpenModal(message);
 		}
 	};
+
+
 
 	return (
 		<>
@@ -65,20 +63,26 @@ export default function NowReadingBook({ book }: { book: any }) {
 					</CustomFont>
 				</CustomRow>
 
-				<ButtonStar onClick={handleAddToFavorite} />
+				<ButtonStar
+					isActive={isFavorite}
+					onClick={handleAddToFavorite}
+				/>
 			</CustomRow>
 
 			{isModalOpen && modalMessage && (
 				<Modal onClose={handleCloseModal}>
-					<CustomFont $color="black">{modalMessage}</CustomFont>
-					<CustomButton
-						$width="auto"
-						$padding="0.5rem"
-						onClick={handleCloseModal}
-						$backgroundColor="#473322"
-					>
-						<CustomFont $color="white">확인</CustomFont>
-					</CustomButton>
+					<CustomColumn $width="100%" $alignitems="center" $justifycontent="center">
+						<CustomFont $color="black" $font="0.8rem">{modalMessage}</CustomFont>
+						<CustomButton
+							$width="auto"
+							$height='auto'
+							$padding="0.5rem"
+							onClick={handleCloseModal}
+							$backgroundColor="#473322"
+						>
+							<CustomFont $color="white">확인</CustomFont>
+						</CustomButton>
+					</CustomColumn>
 				</Modal>
 			)}
 		</>
