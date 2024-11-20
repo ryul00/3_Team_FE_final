@@ -2,7 +2,11 @@ import CustomRow from "@/components/CustomRow";
 import CustomFont from "@/components/CustomFont";
 import ButtonStar from "./ButtonStar";
 
-export default function NowReadingBook() {
+export default function NowReadingBook({ book }: { book: any }) {
+
+	// if (book) {
+	// 	console.log("NowReading에 선택된 책 정보 전달 성공:", book);
+	// }
 
 	return (
 		<CustomRow $width="90%" $height="auto" $alignitems="center" $justifycontent="space-between">

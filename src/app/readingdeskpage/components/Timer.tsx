@@ -5,10 +5,14 @@ import CustomRow from "@/components/CustomRow";
 import CustomBox from "@/components/CustomBox";
 import CustomButton from "@/components/CustomButton";
 
-export default function Timer() {
+export default function Timer({ book }: { book: any }) {
 	const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
 	const [isRunning, setIsRunning] = useState(false);
 	const timerRef = useRef<number | null>(null);
+
+	if (book) {
+		console.log("Timer에 선택된 책 정보 전달 성공:", book);
+	}
 
 	// 컴포넌트 로드 시 localStorage에서 시간 복원
 	useEffect(() => {

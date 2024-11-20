@@ -10,7 +10,7 @@ import StyledImg from "@/components/StyledImg";
 import BookMarkModal from "./bookmarkmodal/BookMarkModal";
 import "./coffee.css";
 
-export default function AddBookMark() {
+export default function AddBookMark({ book }: { book: any }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleOpenModal = () => {
@@ -20,6 +20,10 @@ export default function AddBookMark() {
 	const handleCloseModal = () => {
 		setIsModalOpen(false);
 	};
+
+	// if (book) {
+	// 	console.log("AddBookMark에 선택된 책 정보 전달 성공:", book);
+	// }
 
 	return (
 		<>

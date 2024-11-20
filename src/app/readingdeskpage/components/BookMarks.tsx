@@ -21,7 +21,7 @@ const truncateText = (text: string, limit: number = 20): string => {
 	return text.length > limit ? `${text.slice(0, limit)}...` : text;
 };
 
-export default function BookMarks() {
+export default function BookMarks({ book }: { book: any }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleOpenModal = () => {
@@ -31,6 +31,10 @@ export default function BookMarks() {
 	const handleCloseModal = () => {
 		setIsModalOpen(false);
 	};
+
+	// if (book) {
+	// 	console.log("BookMark에 선택된 책 정보 전달 성공:", book);
+	// }
 
 	return (
 		<CustomColumn $width="90%" $gap="0.5rem">

@@ -9,6 +9,15 @@ import { useRouter } from "next/navigation";
 
 export default function DoneRead({ books }: { books: any[] }) {
 	const router = useRouter();
+
+	const handleBookClick = (bookId: number) => {
+		// books 전체 데이터를 로컬 스토리지에 저장
+		localStorage.setItem("books", JSON.stringify(books));
+		// 클릭한 책의 ID를 로컬 스토리지에 저장
+		localStorage.setItem("selectedBookId", bookId.toString());
+		router.push("/readingdeskpage");
+	};
+
 	return (
 		<>
 			<CustomRow $width="100%" $justifycontent="flex-start" $alignitems="center">
@@ -30,7 +39,7 @@ export default function DoneRead({ books }: { books: any[] }) {
 								$width="auto"
 								$height="auto"
 								$padding="0"
-								onClick={() => router.push("/readingdeskpage")}
+								onClick={() => handleBookClick(book.shelfBookId)}
 							>
 								<div className="bg-[#D9D9D9] w-[100px] h-[100%] flex-shrink-0 rounded-md">
 									<img
