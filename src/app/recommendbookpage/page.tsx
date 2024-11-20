@@ -33,7 +33,7 @@ export default function RecommendBookPage() {
 		>
 			<Header />
 			<Books books={books} />
-			<ReadReviewAndAdd />
+			<ReadReviewAndAdd books={books} />
 			<BannerAds />
 			<NextStepButton />
 		</CustomColumn>

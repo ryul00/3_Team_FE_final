@@ -1,30 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
 import CustomButton from "@/components/CustomButton";
 import CustomBox from "@/components/CustomBox";
 import CustomFont from "@/components/CustomFont";
 
+import { getReviewFromAPI } from "../api/getReviewFromAPI";
+import { addBookByAPI } from "../api/addBookByAPI";
+
 import { RiSingleQuotesL } from "react-icons/ri";
 import { RiSingleQuotesR } from "react-icons/ri";
-
-const comments = [
-	[
-		"인생의 허무함을 알려주는 책",
-		"삶이란 점점 죽어가는 것",
-		"살아있음에 감사함을 느꼈어요.",
-	],
-	[
-		"최고의 복수란 까먹고 잘 사는 것",
-		"소중한 나를 버려두지 마",
-	],
-	[
-		"미래를 위해 현재를 불행하지 말자",
-		"불시착했다면 새로운 기회가 온 것",
-	],
-];
 
 const CustomStyledButton = ({
 	isActive,
@@ -51,17 +38,51 @@ const CustomStyledButton = ({
 	);
 };
 
-export default function ReadReviewAndAdd() {
-	// 여러 개의 활성 버튼을 저장
-	const [activeButtons, setActiveButtons] = useState<number[]>([]);
+interface Book {
+	title: string;
+	image: string;
+}
 
-	const handleButtonClick = (index: number) => {
-		setActiveButtons((prevState) =>
-			prevState.includes(index)
-				? prevState.filter((i) => i !== index)
-				: [...prevState, index] // 새로운 버튼 추가
-		);
+export default function ReadReviewAndAdd({ books }: { books: Book[] }) {
+
+	const [activeButtons, setActiveButtons] = useState<number[]>([]);
+	const [reviews, setReviews] = useState<string[][]>([]); // 리뷰 데이터
+
+	const handleButtonClick = async (index: number, title: string) => {
+		try {
+			const response = await addBookByAPI(title);
+			console.log("책 추가 성공:", response);
+
+			// 버튼 활성화 상태 변경
+			setActiveButtons((prevState) =>
+				prevState.includes(index)
+					? prevState.filter((i) => i !== index)
+					: [...prevState, index] // 새로운 버튼 추가
+			);
+		} catch (error) {
+			console.error("책 추가 중 오류:", error);
+		}
 	};
+
+	useEffect(() => {
+		const fetchReviews = async () => {
+			try {
+				const response = await getReviewFromAPI(books);
+
+				const extractedReviews = response.reviews.map((bookReview: any) =>
+					bookReview.reviews.length > 0
+						? bookReview.reviews
+						: ["감상이 없습니다."] // 리뷰가 없을 경우 기본 메시지
+				);
+
+				setReviews(extractedReviews);
+			} catch (error) {
+				console.error("리뷰 데이터를 가져오는 중 오류 발생:", error);
+			}
+		};
+
+		fetchReviews();
+	}, [books]);
 
 	return (
 		<CustomColumn $width="100%" $gap="1rem">
@@ -71,7 +92,7 @@ export default function ReadReviewAndAdd() {
 			</p>
 
 			<CustomRow $width="100%" $gap="1rem">
-				{comments.map((commentList, columnIndex) => (
+				{reviews.map((reviewList, columnIndex) => (
 					<CustomColumn
 						key={columnIndex}
 						$width="25%"
@@ -79,11 +100,10 @@ export default function ReadReviewAndAdd() {
 						$alignitems="center"
 						$justifycontent="space-between"
 					>
-
 						<CustomColumn $width='100%'>
-							{commentList.map((comment, commentIndex) => (
+							{reviewList.map((review, reviewIndex) => (
 								<CustomBox
-									key={commentIndex}
+									key={reviewIndex}
 									$width="100%"
 									$height="auto"
 									$backgroundcolor="#544681"
@@ -93,21 +113,18 @@ export default function ReadReviewAndAdd() {
 									$padding='0.5rem'
 									$overflowy="hidden"
 								>
-
 									<CustomFont $color="white">
 										<RiSingleQuotesL className="inline-block mr-1" />
-										{comment}
+										{review}
 										<RiSingleQuotesR className="inline-block ml-1" />
 									</CustomFont>
-
 								</CustomBox>
 							))}
 						</CustomColumn>
 
-
 						<CustomStyledButton
 							isActive={activeButtons.includes(columnIndex)}
-							onClick={() => handleButtonClick(columnIndex)}
+							onClick={() => handleButtonClick(columnIndex, books[columnIndex].title)}
 						/>
 					</CustomColumn>
 				))}
