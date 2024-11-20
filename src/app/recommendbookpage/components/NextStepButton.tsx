@@ -4,6 +4,7 @@ import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
 import ArrowButton from "@/app/homepage/components/ArrowButton";
 import CustomButton from "@/components/CustomButton";
+import CustomFont from "@/components/CustomFont";
 
 export default function NextStepButton() {
 	const router = useRouter();
@@ -26,10 +27,16 @@ export default function NextStepButton() {
 					onClick={() => router.push("/homepage")}
 				/>
 			</CustomRow>
-			<CustomButton $width='100%' $alignItems="center" $justifyContent="center" $backgroundColor="#D9D9D9"
-				onClick={() => router.push("/navigationpage")}>
-				가장 가까운 도서관으로 출발하기
-			</CustomButton>
+
+			<CustomRow $width="100%" $alignitems="center" $justifycontent="center">
+				<ArrowButton
+					imagePath="/icon_navi_button.svg"
+					width="w-[22rem]"
+					height="h-[4rem]"
+					text="가장 가까운 도서관으로 출발하기"
+					onClick={() => router.push("/navigationpage")}
+				/>
+			</CustomRow>
 		</CustomColumn>
 	);
 }
