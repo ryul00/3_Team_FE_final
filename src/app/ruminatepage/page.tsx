@@ -12,7 +12,6 @@ export default function page() {
     return (
         <div className="relative w-full min-h-screen flex flex-col  bg-gradient-to-b from-[#1E0F51] to-[#0F0728] px-4 pt-2">
             <Header />
-
             <CustomColumn $gap="2rem">
                 <div className="text-white opacity-20">완독을 축하 드립니다</div>
                 <div className="text-white opacity-20">오늘의 독서를 반추해보세요</div>
