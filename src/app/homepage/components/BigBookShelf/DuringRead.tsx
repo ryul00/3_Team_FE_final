@@ -7,7 +7,7 @@ import CustomRow from "@/components/CustomRow";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/navigation";
 
-export default function DuringRead() {
+export default function DuringRead({ books }: { books: any[] }) {
 	const router = useRouter();
 	return (
 		<>
@@ -17,22 +17,32 @@ export default function DuringRead() {
 				</CustomBox>
 			</CustomRow>
 			<div className="w-full bg-[#473322] p-4 rounded-tl-[2rem] rounded-tr-[2rem]">
-				<div className="w-full h-[10rem] overflow-x-auto flex gap-2 custom-scrollbar">
-					{Array.from({ length: 12 }).map((_, index) => (
-						<CustomButton
-							key={`read-book-${index}`}
-							$backgroundColor="transparent"
-							$width="auto"
-							$height="auto"
-							$padding="0"
-							onClick={() => router.push("/readingdeskpage")}
-						>
-							<div className="bg-[#D9D9D9] w-[100px] h-[100%] flex-shrink-0 rounded-md">
-								책{index + 1}
-							</div>
-						</CustomButton>
-					))}
-				</div>
+				{books.length === 0 ? (
+					<CustomRow $width="100%" $alignitems="center" $justifycontent="center">
+						<CustomFont $color="white">아직 읽고 계신 책이 없네요!</CustomFont>
+					</CustomRow>
+				) : (
+					<div className="w-full h-[10rem] overflow-x-auto flex gap-2 custom-scrollbar">
+						{books.map((book, index) => (
+							<CustomButton
+								key={book.shelfBookId || index}
+								$backgroundColor="transparent"
+								$width="auto"
+								$height="auto"
+								$padding="0"
+								onClick={() => router.push("/readingdeskpage")}
+							>
+								<div className="bg-[#D9D9D9] w-[100px] h-[100%] flex-shrink-0 rounded-md">
+									<img
+										src={book.coverImageUrl || "/placeholder-image.jpg"}
+										alt={book.title}
+										className="w-full h-full object-cover rounded-md"
+									/>
+								</div>
+							</CustomButton>
+						))}
+					</div>
+				)}
 			</div>
 		</>
 	);
