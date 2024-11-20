@@ -1,61 +1,113 @@
 "use client";
 import React, { useEffect } from "react";
-import LibraryData from '../../../../libraryData.json';
+import LibraryData from "../../../../libraryData.json";
 
 const KakaoMap = () => {
 	useEffect(() => {
-		if (window.kakao) {
-			console.log('window.kakao 인식 성공');
-			window.kakao.maps.load(() => {
-				const mapContainer = document.getElementById("map");
-				const mapOption = {
-					center: new window.kakao.maps.LatLng(37.566826, 126.9786567), // 초기 위치
-					level: 3, // 초기 줌 레벨
-				};
+		const loadKakaoMap = () => {
+			return new Promise<void>((resolve, reject) => {
+				if (window.kakao && window.kakao.maps) {
+					window.kakao.maps.load(() => resolve());
+				} else {
+					reject(new Error("Kakao 지도 API 로드 실패"));
+				}
+			});
+		};
 
+		const getCurrentLocation = () => {
+			return new Promise<{ lat: number; lng: number }>((resolve, reject) => {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(
+						(position) => {
+							const { latitude, longitude } = position.coords;
+							resolve({ lat: latitude, lng: longitude });
+						},
+						(error) => {
+							console.error("위치 정보 가져오기 실패:", error);
+							reject(error);
+						}
+					);
+				} else {
+					reject(new Error("Geolocation을 지원하지 않는 브라우저입니다."));
+				}
+			});
+		};
+
+		const initializeMap = async () => {
+			try {
+				await loadKakaoMap();
+				const { lat, lng } = await getCurrentLocation();
+				console.log("사용자 위치:", lat, lng);
+
+				const mapContainer = document.getElementById("map");
+				if (!mapContainer) {
+					console.error("지도 컨테이너를 찾을 수 없습니다.");
+					return;
+				}
+
+				// 지도 옵션 설정
+				const mapOption = {
+					center: new window.kakao.maps.LatLng(lat, lng),
+					level: 3,
+				};
 				const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
-				const addMarker = (position: any, title: string) => {
-					const marker = new window.kakao.maps.Marker({
-						map: map,
-						position: position,
-					});
+				const bounds = new window.kakao.maps.LatLngBounds();
 
-					const infowindow = new window.kakao.maps.InfoWindow({
-						content: `<div style="padding:5px;">${title}</div>`,
-					});
+				// 마커 이미지 설정
+				const markerImage = new window.kakao.maps.MarkerImage(
+					"/icon_marker.svg",
+					new window.kakao.maps.Size(32, 34),
+					{ offset: new window.kakao.maps.Point(16, 34) } // 마커의 기준 좌표 (이미지의 중심점)
+				);
 
-					// 마커에 이벤트 리스너 등록
-					window.kakao.maps.event.addListener(marker, 'mouseover', () => {
-						infowindow.open(map, marker);
-					});
-					window.kakao.maps.event.addListener(marker, 'mouseout', () => {
-						infowindow.close();
-					});
-				};
+				// 사용자 위치
+				const userMarker = new window.kakao.maps.Marker({
+					position: new window.kakao.maps.LatLng(lat, lng),
+					map: map,
+					image: markerImage,
+				});
+				bounds.extend(userMarker.getPosition());
 
-				// LibraryData의 위도와 경도를 사용하여 마커 추가
+				// 도서관 데이터 마커
 				LibraryData.records.forEach((library) => {
 					const latitude = Number(library["위도"]);
 					const longitude = Number(library["경도"]);
 
-					const libraryName = library["도서관명"];
-
-					// 위도와 경도가 올바른지 확인
-					// const latitude = latitudeRaw ? parseFloat(latitudeRaw) : NaN;
-					// const longitude = longitudeRaw ? parseFloat(longitudeRaw) : NaN;
-
-					console.log(`도서관명: ${libraryName}, 위도: ${latitude}, 경도: ${longitude}`);
-
 					if (!isNaN(latitude) && !isNaN(longitude)) {
-						const coords = new window.kakao.maps.LatLng(latitude, longitude);
-						addMarker(coords, libraryName); // 유효한 좌표만 마커 추가
-					} else {
-						console.error(`유효하지 않은 좌표: ${libraryName} (위도: ${latitude}, 경도: ${longitude})`);
+						const markerPosition = new window.kakao.maps.LatLng(
+							latitude,
+							longitude
+						);
+
+						// 도서관 위치에 마커 생성
+						const libraryMarker = new window.kakao.maps.Marker({
+							position: markerPosition,
+							map: map,
+						});
+
+						// 마커에 클릭 이벤트 추가
+						const infowindow = new window.kakao.maps.InfoWindow({
+							content: `<div style="padding:5px;">${library["도서관명"]}</div>`,
+						});
+						window.kakao.maps.event.addListener(
+							libraryMarker,
+							"click",
+							() => {
+								infowindow.open(map, libraryMarker);
+							}
+						);
 					}
 				});
-			});
-		}
+
+				map.setBounds(bounds);
+				console.log("지도 범위 설정 완료");
+			} catch (error) {
+				console.error("지도 초기화 중 오류 발생:", error);
+			}
+		};
+
+		initializeMap();
 	}, []);
 
 	return <div id="map" style={{ width: "100%", height: "90vh" }} />;
