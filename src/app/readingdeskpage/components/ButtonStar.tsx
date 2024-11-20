@@ -8,6 +8,7 @@ interface ButtonStarProps {
 	borderColor?: string;
 	backgroundColor?: string;
 	activeBackgroundColor?: string;
+	onClick?: () => void;
 }
 
 const ButtonStar: React.FC<ButtonStarProps> = ({
@@ -16,11 +17,13 @@ const ButtonStar: React.FC<ButtonStarProps> = ({
 	borderColor = "#EEE600",
 	backgroundColor = "transparent",
 	activeBackgroundColor = "#EEE600",
+	onClick,
 }) => {
 	const [isActive, setIsActive] = useState(false);
 
 	const handleClick = () => {
 		setIsActive((prevState) => !prevState);
+		if (onClick) onClick();
 	};
 
 	return (
