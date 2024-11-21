@@ -6,6 +6,7 @@ import CustomRow from "@/components/CustomRow";
 import CustomButton from "@/components/CustomButton";
 import CustomBox from "@/components/CustomBox";
 import CustomFont from "@/components/CustomFont";
+import Modal from "@/components/modal/Modal";
 
 import { getReviewFromAPI } from "../api/getReviewFromAPI";
 import { addBookByAPI } from "../api/addBookByAPI";
@@ -47,11 +48,13 @@ export default function ReadReviewAndAdd({ books }: { books: Book[] }) {
 
 	const [activeButtons, setActiveButtons] = useState<number[]>([]);
 	const [reviews, setReviews] = useState<string[][]>([]); // 리뷰 데이터
+	const [modal, setModal] = useState(false);
 
 	const handleButtonClick = async (index: number, title: string) => {
 		try {
 			const response = await addBookByAPI(title);
 			console.log("책 추가 성공:", response);
+			setModal(true);
 
 			// 버튼 활성화 상태 변경
 			setActiveButtons((prevState) =>
@@ -63,6 +66,14 @@ export default function ReadReviewAndAdd({ books }: { books: Book[] }) {
 			console.error("책 추가 중 오류:", error);
 		}
 	};
+
+	const handleModalOpen = () => {
+		setModal(true);
+	}
+
+	const handleModalClose = () => {
+		setModal(false);
+	}
 
 	useEffect(() => {
 		const fetchReviews = async () => {
@@ -129,6 +140,21 @@ export default function ReadReviewAndAdd({ books }: { books: Book[] }) {
 					</CustomColumn>
 				))}
 			</CustomRow>
+
+			{modal && (
+				<Modal onClose={handleModalClose}>
+					<CustomColumn $width="100%" $alignitems="center" $justifycontent="center">
+						<CustomFont $color='black' $font='0.8rem'>
+							이 책을 책장에 꽂았어요!
+						</CustomFont>
+
+						<CustomButton $width='auto' $height='auto' $padding='0.5rem' $alignItems="center" $justifyContent="center"
+							$backgroundColor="#473322" onClick={handleModalClose}>
+							<CustomFont $color='white' $font='0.8rem' >확인</CustomFont>
+						</CustomButton>
+					</CustomColumn>
+				</Modal>
+			)}
 		</CustomColumn>
 	);
 }
