@@ -10,10 +10,11 @@ import { addFavoriteAPI } from "../api/addFavoriteAPI";
 import CustomButton from "@/components/CustomButton";
 import CustomColumn from "@/components/CustomColumn";
 
-export default function NowReadingBook({ book }: { book: any }) {
+export default function NowReadingBook({ bookDetails }: { bookDetails: { bookId: number; title: string; lastTime: string } | null }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [modalMessage, setModalMessage] = useState<string | null>(null);
 	const [isFavorite, setIsFavorite] = useState(false); // 별의 활성화
+	const title = bookDetails?.title || "책 정보 없음";
 
 	const handleOpenModal = (message: string) => {
 		setModalMessage(message);
@@ -26,10 +27,14 @@ export default function NowReadingBook({ book }: { book: any }) {
 	};
 
 	const handleAddToFavorite = async () => {
-		if (!book) return;
+
+		if (!bookDetails?.bookId) {
+			handleOpenModal("책 정보가 없습니다.");
+			return;
+		}
 
 		try {
-			const response = await addFavoriteAPI(book.shelfBookId);
+			const response = await addFavoriteAPI(bookDetails.bookId);
 			if (response.status === 200) {
 				handleOpenModal("또 읽을 책으로 추가하였습니다!");
 				setIsFavorite(true); // 요청 성공 시 별 버튼 노랗게 됨
@@ -59,7 +64,7 @@ export default function NowReadingBook({ book }: { book: any }) {
 						-
 					</CustomFont>
 					<CustomFont $color="white" $fontweight="bold" $font="1rem">
-						{book?.title || "책 정보 없음"}
+						{title || "책 정보 없음"}
 					</CustomFont>
 				</CustomRow>
 

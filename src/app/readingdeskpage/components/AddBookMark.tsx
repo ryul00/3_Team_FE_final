@@ -15,8 +15,8 @@ import { queryClient } from "@/config/ReactQueryProvider";
 
 export default function AddBookMark({ book }: { book: any }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [input, setInput] = useState<number>();
-    const [textArea, setTextArea] = useState<string | undefined>("");
+    const [input, setInput] = useState<number>(0);
+    const [textArea, setTextArea] = useState<string>("");
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
@@ -30,19 +30,10 @@ export default function AddBookMark({ book }: { book: any }) {
         setIsModalOpen(false);
     };
 
-    if (input === undefined || textArea === undefined) {
-        // console.error("Input 또는 textArea 값이 설정되지 않았습니다.");
-        return;
-    }
-
     const bookMarkMutation = useMutation({
         mutationFn: () => postBookMark(book?.shelfBookId, input, textArea),
         onSuccess: () => queryClient.invalidateQueries({ queryKey: ["bookmark"] }),
     });
-
-    // if (book) {
-    // 	console.log("AddBookMark에 선택된 책 정보 전달 성공:", book);
-    // }
 
     return (
         <>
