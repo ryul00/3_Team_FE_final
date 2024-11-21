@@ -27,7 +27,7 @@ export default function BookShelf() {
 				const response = await getBookShelf();
 				// console.log("응답 데이터:", response);
 
-				setReReadBooks(response.readBooks);
+				setReReadBooks(response.rereadBooks);
 				console.log("또 읽은 책 배열 전달 성공");
 			} catch (error) {
 				console.error("책 데이터를 가져오는 중 오류 발생:", error);
