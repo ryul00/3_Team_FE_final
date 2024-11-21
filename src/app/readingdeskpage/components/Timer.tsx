@@ -6,24 +6,26 @@ import CustomBox from "@/components/CustomBox";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/navigation";
 
-export default function Timer({ book }: { book: any }) {
+import { startReadAPI } from "../api/startReadAPI";
+import { updateTimeAPI } from "../api/updateTimeAPI";
+import { endReadAPI } from "../api/endReadAPI";
+import { againReadAPI } from "../api/againReadAPI";
+
+export default function Timer({ bookDetails }: { bookDetails: { bookId: number; title: string; lastTime: string } | null }) {
     const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0 });
     const [isRunning, setIsRunning] = useState(false);
+    const [completeButtonText, setCompleteButtonText] = useState("완독했어요");
     const timerRef = useRef<number | null>(null);
     const router = useRouter();
-    if (book) {
-        console.log("Timer에 선택된 책 정보 전달 성공:", book);
-    }
 
-    // 컴포넌트 로드 시 localStorage에서 시간 복원
+    // 컴포넌트 로드 시 전달받은 lastTime으로 초기화
     useEffect(() => {
-        const savedTime = localStorage.getItem("timer");
-        if (savedTime) {
-            setTime(JSON.parse(savedTime));
+        if (bookDetails?.lastTime) {
+            const [hours, minutes, seconds] = bookDetails.lastTime.split(":").map(Number);
+            setTime({ hours, minutes, seconds });
         }
-    }, []);
+    }, [bookDetails]);
 
-    // 타이머가 실행 중일 때 초를 증가
     useEffect(() => {
         if (isRunning) {
             timerRef.current = window.setInterval(() => {
@@ -53,25 +55,39 @@ export default function Timer({ book }: { book: any }) {
         };
     }, [isRunning]);
 
-    // 시간 변경 시 localStorage에 저장
-    useEffect(() => {
-        localStorage.setItem("timer", JSON.stringify(time));
-    }, [time]);
+    // 타이머 시작/멈춤
+    const handleStartStop = async () => {
+        if (!isRunning) {
+            // '시작' 버튼 클릭 시 startReadAPI 호출
+            if (bookDetails) {
+                await startReadAPI(bookDetails.bookId);
+            }
+        } else {
+            // '멈춤' 버튼 클릭 시 updateTimeAPI 호출
+            if (bookDetails) {
+                const lastTime = `${String(time.hours).padStart(2, "0")}:${String(time.minutes).padStart(2, "0")}:${String(time.seconds).padStart(2, "0")}`;
+                await updateTimeAPI(bookDetails.bookId, lastTime);
+            }
+        }
 
-    // 타이머 시작/멈춤 함수
-    const handleStartStop = () => {
         setIsRunning((prev) => !prev);
     };
 
-    // 타이머 초기화 함수
-    const handleReset = () => {
-        if (timerRef.current) {
-            clearInterval(timerRef.current);
-            timerRef.current = null;
+    // 완독했어요/또 읽을래요 버튼
+    const handleComplete = async () => {
+        if (completeButtonText === "완독했어요") {
+            // '완독했어요' 버튼 클릭 시 endReadAPI 호출
+            if (bookDetails) {
+                await endReadAPI(bookDetails.bookId);
+                setCompleteButtonText("또 읽을래요");
+            }
+        } else if (completeButtonText === "또 읽을래요") {
+            // '또 읽을래요' 버튼 클릭 시 againReadAPI 호출
+            if (bookDetails) {
+                await againReadAPI(bookDetails.bookId);
+                setCompleteButtonText("완독했어요");
+            }
         }
-        setIsRunning(false);
-        setTime({ hours: 0, minutes: 0, seconds: 0 });
-        localStorage.removeItem("timer");
     };
 
     return (
@@ -90,7 +106,7 @@ export default function Timer({ book }: { book: any }) {
 
                 <CustomRow $width="100%" $height="50%" $alignitems="center" $justifycontent="center" $gap="1rem">
                     <CustomColumn $width="50%" $alignitems="center" $justifycontent="center" $gap="1rem">
-                        <CustomButton $backgroundColor="#9E5F5F" $width="100%" $height="50%" $borderRadius="1rem" $padding="1rem" onClick={handleReset}>
+                        <CustomButton $backgroundColor="#9E5F5F" $width="100%" $height="50%" $borderRadius="1rem" $padding="1rem" onClick={() => setTime({ hours: 0, minutes: 0, seconds: 0 })}>
                             <CustomFont $color="white" $fontweight="bold">
                                 초기화
                             </CustomFont>
@@ -111,10 +127,10 @@ export default function Timer({ book }: { book: any }) {
                         $backgroundColor="#136D6C"
                         $borderRadius="1rem"
                         $padding="1rem"
-                        onClick={() => router.push(`/ruminatepage?shelfBookId=${book?.shelfBookId}`)}
+                        onClick={handleComplete}
                     >
                         <CustomFont $color="white" $fontweight="bold">
-                            완독했어요
+                            {completeButtonText}
                         </CustomFont>
                     </CustomButton>
                 </CustomRow>

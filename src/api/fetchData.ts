@@ -1,3 +1,5 @@
+"use server";
+
 import { cookies } from "next/headers";
 
 export async function fetchData(endPoint: string, method: "GET" | "POST" | "DELETE" | "PATCH" | "PUT", body?: object) {

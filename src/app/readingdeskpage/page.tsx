@@ -10,23 +10,39 @@ import Timer from "./components/Timer";
 import Radio from "./components/Radio";
 import BookMarks from "./components/BookMarks";
 import AddBookMark from "./components/AddBookMark";
+import { getBookInfo } from "./api/getBookInfo";
 
 export default function ReadingDeskPage() {
 
+	const [bookDetails, setBookDetails] = useState<{ bookId: number; title: string; lastTime: string } | null>(null);
 	const [selectedBook, setSelectedBook] = useState<any>(null);
 
 	useEffect(() => {
-		// 로컬 스토리지에서 books 데이터와 선택된 bookId 가져오기
-		const books = JSON.parse(localStorage.getItem("books") || "[]");
+		// 로컬 스토리지에서 선택된 bookId 가져오기
 		const selectedBookId = localStorage.getItem("selectedBookId");
 
-		if (books.length > 0 && selectedBookId) {
-			// 선택된 책의 ID로 해당 책 필터링
+		const books = JSON.parse(localStorage.getItem("books") || "[]");
+
+		if (selectedBookId) {
 			const book = books.find((b: any) => b.shelfBookId === parseInt(selectedBookId, 10));
+			const bookId = parseInt(selectedBookId, 10);
+
 			setSelectedBook(book);
-			console.log("선택된 책 정보:", book);
+
+			getBookInfo(parseInt(selectedBookId, 10))
+				.then((data) => {
+					console.log("가져온 책 정보:", data);
+					setBookDetails({
+						bookId,
+						title: data.title,
+						lastTime: data.lastTime,
+					});
+				})
+				.catch((error) => {
+					console.error("책 정보를 가져오는 중 오류 발생:", error);
+				});
 		} else {
-			console.log("로컬 스토리지에 데이터가 없습니다.");
+			console.log("로컬 스토리지에 선택된 책 ID가 없습니다.");
 		}
 	}, []);
 
@@ -40,8 +56,8 @@ export default function ReadingDeskPage() {
 		>
 			<CustomColumn $width='100%' $gap='0.5rem'>
 				<DeskHeader />
-				<NowReadingBook book={selectedBook} />
-				<Timer book={selectedBook} />
+				<NowReadingBook bookDetails={bookDetails} />
+				<Timer bookDetails={bookDetails} />
 			</CustomColumn>
 			<BookMarks book={selectedBook} />
 			<Radio />

@@ -28,7 +28,7 @@ export default function BookMarks({ book }: { book: any }) {
         queryKey: ["bookmark"],
         queryFn: () => getBookMark(book.shelfBookId),
     });
-    
+
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
@@ -74,9 +74,9 @@ export default function BookMarks({ book }: { book: any }) {
                 <CustomColumn $width="100%" $gap="0.5rem" $alignitems="center" $justifycontent="center">
                     {data?.length > 0 ? (
                         data?.map((bookmark: bookMarkType) => (
-                            <CustomRow key={bookmark.bookmarkId} $width="100%" $justifycontent="flex-start" $alignitems="center">
+                            <CustomRow key={bookmark.bookmarkId} $width="90%" $justifycontent="space-between" $alignitems="center">
                                 <CustomFont $color="#7A6B52" $font="1rem" $fontweight="bold">
-                                    {bookmark.pageNumber}
+                                    {bookmark.pageNumber}쪽
                                 </CustomFont>
                                 <CustomFont $color="#7A6B52" $font="1rem">
                                     {truncateText(bookmark.content)}
