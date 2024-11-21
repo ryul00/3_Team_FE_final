@@ -1,6 +1,6 @@
-import { ChangeEvent} from "react";
+import { ChangeEvent } from "react";
 
-const Review = ({ review, setReview }) => {
+const Review = ({ review, setReview }: { review: string; setReview:any}) => {
     return (
         <div className="text-white w-full flex flex-col gap-4">
             <h1 className="font-bold">한 줄 감상을 써주세요.</h1>
