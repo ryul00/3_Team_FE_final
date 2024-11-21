@@ -31,7 +31,7 @@ export default function AddBookMark({ book }: { book: any }) {
     };
 
     if (input === undefined || textArea === undefined) {
-        console.error("Input 또는 textArea 값이 설정되지 않았습니다.");
+        // console.error("Input 또는 textArea 값이 설정되지 않았습니다.");
         return;
     }
 
