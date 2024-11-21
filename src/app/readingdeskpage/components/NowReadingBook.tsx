@@ -27,7 +27,6 @@ export default function NowReadingBook({ bookDetails }: { bookDetails: { bookId:
 	};
 
 	const handleAddToFavorite = async () => {
-
 		if (!bookDetails?.bookId) {
 			handleOpenModal("책 정보가 없습니다.");
 			return;
@@ -35,8 +34,13 @@ export default function NowReadingBook({ bookDetails }: { bookDetails: { bookId:
 
 		try {
 			const response = await addFavoriteAPI(bookDetails.bookId);
+
 			if (response.status === 200) {
-				handleOpenModal("또 읽을 책으로 추가하였습니다!");
+				const message = response.shelfBook?.status === "또읽을책"
+					? "또 읽을 책으로 추가하였습니다!"
+					: response.message || "상태가 변경되었습니다.";
+
+				handleOpenModal(message);
 				setIsFavorite(true); // 요청 성공 시 별 버튼 노랗게 됨
 			}
 		} catch (error: any) {
@@ -44,12 +48,13 @@ export default function NowReadingBook({ bookDetails }: { bookDetails: { bookId:
 
 			const message =
 				typeof error === "object" && error.message
-					? "책을 다 읽으신 후 또 읽을 책으로 추가가 가능합니다!"
+					? error.message
 					: "알 수 없는 오류가 발생했습니다.";
 
 			handleOpenModal(message);
 		}
 	};
+
 
 
 

@@ -6,9 +6,17 @@ export async function addFavoriteAPI(bookId: number) {
 	try {
 		const endPoint = `/api/shelf/mark-for-reread/${bookId}`;
 		const response = await fetchData(endPoint, "PUT");
-		return response;
+
+		const { message, shelfBook } = response;
+
+		if (shelfBook?.status === "또읽을책") {
+			return { status: 200, message: "또 읽을 책으로 추가하였습니다!", shelfBook };
+		}
+
+		return { status: 200, message: message || "상태가 변경되었습니다.", shelfBook };
 	} catch (error: any) {
 		console.error("API 에러:", error);
+
 		const statusMatch = error.message?.match(/STATUS:(\d+)/);
 		const status = statusMatch ? parseInt(statusMatch[1], 10) : 500;
 
@@ -20,4 +28,3 @@ export async function addFavoriteAPI(bookId: number) {
 		};
 	}
 }
-
