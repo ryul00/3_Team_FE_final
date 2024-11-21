@@ -33,7 +33,7 @@ export const postBookMark = async () => {
 export const postReview = async (bookId: number, content: string) => {
     const body = { bookId: bookId, content: content };
     console.log(body);
-    const data = await fetchData(`/api/shelf/review/add?bookId=${bookId}&content=${content}`, "POST", body);
+    const data = await fetchData(`/api/shelf/review/add`, "POST", body);
     console.log(data);
-    return data;
+    return data
 };
