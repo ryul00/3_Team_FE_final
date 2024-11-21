@@ -10,13 +10,14 @@ import StyledImg from "@/components/StyledImg";
 import BookMarkModal from "./bookmarkmodal/BookMarkModal";
 import "./coffee.css";
 import { postBookMark } from "@/app/actions/bookmark.action";
-
+import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "@/config/ReactQueryProvider";
 
 export default function AddBookMark({ book }: { book: any }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [input, setInput] = useState<number>();
     const [textArea, setTextArea] = useState<string | undefined>("");
- 
+
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
@@ -25,11 +26,13 @@ export default function AddBookMark({ book }: { book: any }) {
         console.log("여기에 책 꽂기 실행");
         console.log("책갈피 추가 할 것들", input, textArea);
         console.log(book?.shelfBookId, book?.bookmarks);
-
-        postBookMark(book?.shelfBookId, input, textArea);
-     
+        bookMarkMutation.mutate();
         setIsModalOpen(false);
     };
+    const bookMarkMutation = useMutation({
+        mutationFn: () => postBookMark(book?.shelfBookId, input, textArea),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["bookmark"] }),
+    });
 
     // if (book) {
     // 	console.log("AddBookMark에 선택된 책 정보 전달 성공:", book);
