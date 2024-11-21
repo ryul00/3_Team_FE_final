@@ -27,14 +27,16 @@ const UI = () => {
         queryFn: () => getBookMark(shelfBookId),
     });
 
+    const bookId = localStorage.getItem("bookId");
     const postReiveMutation = useMutation({
-        mutationFn: () => postReview(shelfBookId, review),
+        mutationFn: () => postReview(Number(bookId), review),
         onSuccess: () => {
             setReview("");
             queryClient.invalidateQueries({ queryKey: ["bookmark"] });
         },
     });
     console.log(data);
+    console.log(bookId)
     return (
         <>
             <Header />
