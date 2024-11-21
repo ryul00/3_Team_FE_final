@@ -9,7 +9,8 @@ import CustomButton from "@/components/CustomButton";
 
 import ManageBookMarkModal from "./bookmarkmodal/ManageBookMarkModal";
 import { getBookMark } from "@/app/actions/ruminate.action";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 
 export interface bookMarkType {
     pageNumber: number;
@@ -23,29 +24,17 @@ const truncateText = (text: string, limit: number = 20): string => (text?.length
 export default function BookMarks({ book }: { book: any }) {
     const [bookmarks, setBookmarks] = useState<bookMarkType[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { data } = useQuery({
+        queryKey: ["bookmark"],
+        queryFn: () => getBookMark(book.shelfBookId),
+    });
     
-    useEffect(() => {
-        const fetchBookmarks = async () => {
-            if (!book?.shelfBookId) return;
-            try {
-                const data = await getBookMark(book.shelfBookId);
-                console.log("북마크 데이터:", data);
-                setBookmarks(data || []);
-                
-            } catch (error) {
-                console.error("책갈피 데이터를 불러오는 중 오류 발생:", error);
-            }
-        };
-        fetchBookmarks();
-    }, []);
-
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
-    
     };
 
     return (
@@ -83,8 +72,8 @@ export default function BookMarks({ book }: { book: any }) {
                 $padding="1rem"
             >
                 <CustomColumn $width="100%" $gap="0.5rem" $alignitems="center" $justifycontent="center">
-                    {bookmarks.length > 0 ? (
-                        bookmarks.map((bookmark: bookMarkType) => (
+                    {data?.length > 0 ? (
+                        data?.map((bookmark: bookMarkType) => (
                             <CustomRow key={bookmark.bookmarkId} $width="100%" $justifycontent="flex-start" $alignitems="center">
                                 <CustomFont $color="#7A6B52" $font="1rem" $fontweight="bold">
                                     {bookmark.pageNumber}
