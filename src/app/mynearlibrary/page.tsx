@@ -1,4 +1,3 @@
-// 로딩 시 첫화면
 "use client";
 
 import CustomColumn from "@/components/CustomColumn";

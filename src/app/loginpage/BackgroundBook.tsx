@@ -1,7 +1,5 @@
 import CustomColumn from "@/components/CustomColumn";
-import CustomRow from "@/components/CustomRow";
 import StyledImg from "@/components/StyledImg";
-import { Children } from "react";
 
 const BackgroundBook = ({ title }: { title: string }) => {
     //가장 두꺼운 책 53px, 가장 얇은 책 14px , 높이 :62 고정

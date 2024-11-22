@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getBookMark, postReview } from "@/app/actions/ruminate.action";
-import { queryClient } from "@/config/ReactQueryProvider";
 import Image from "next/image";
 import CustomRow from "@/components/CustomRow";
 
@@ -22,13 +21,13 @@ const UI = () => {
     const shelfBookId = Number(searchParams.get("shelfBookId"));
     const [review, setReview] = useState("");
     const [bookmarkId, setBookMarkId] = useState(0);
-    const router=useRouter()
+    const router = useRouter()
 
     const { data } = useQuery({ queryKey: ["bookmark", shelfBookId], queryFn: () => getBookMark(shelfBookId) });
     const bookId = localStorage.getItem("bookId");
     const postReiveMutation = useMutation({
         mutationFn: () => postReview(Number(bookId), review),
-        onSuccess:()=>router.push('/homepage')
+        onSuccess: () => router.push('/homepage')
     });
     console.log(data);
     console.log(bookId);

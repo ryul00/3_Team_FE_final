@@ -13,7 +13,6 @@ export default function Login() {
                 <BackgroundBook title="로고" />
                 <BackgroundBook title="" />
             </CustomColumn>
-
             <LoginBtn />
         </div>
     );

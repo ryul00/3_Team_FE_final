@@ -3,19 +3,29 @@
 import React, { useState } from "react";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
-
 import ArrowButton from "@/app/homepage/components/ArrowButton";
 import StyledImg from "@/components/StyledImg";
-
 import BookMarkModal from "./bookmarkmodal/BookMarkModal";
 import "./coffee.css";
 import { postBookMark } from "@/app/actions/bookmark.action";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/config/ReactQueryProvider";
+import { bookMarkType } from "./BookMarks";
+interface Book {
+    shelfBookId: string;
+    bookmarks: Array<{
+        id: number;
+        page: number;
+        note: string;
+    }>;
+}
+interface AddBookMarkProps {
+    book: Book;
+}
 
-export default function AddBookMark({ book }: { book: any }) {
+export default function AddBookMark({ book }: AddBookMarkProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [input, setInput] = useState<number>(0);
+    const [input, setInput] = useState(0);
     const [textArea, setTextArea] = useState<string>("");
 
     const handleOpenModal = () => {

@@ -1,10 +1,7 @@
 import { useRouter } from "next/navigation";
-import CustomBox from "@/components/CustomBox";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
 import ArrowButton from "@/app/homepage/components/ArrowButton";
-import CustomButton from "@/components/CustomButton";
-import CustomFont from "@/components/CustomFont";
 
 export default function NextStepButton() {
 	const router = useRouter();
