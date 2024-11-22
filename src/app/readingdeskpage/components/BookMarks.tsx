@@ -90,7 +90,7 @@ export default function BookMarks({ book }: { book: any }) {
                     )}
                 </CustomColumn>
             </CustomBox>
-            {isModalOpen && <ManageBookMarkModal bookmark={bookmarks} onClose={handleCloseModal} />}
+            {isModalOpen && <ManageBookMarkModal bookmark={data} onClose={handleCloseModal} />}
         </CustomColumn>
     );
 }
