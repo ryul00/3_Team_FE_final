@@ -4,6 +4,7 @@ import CustomFont from "@/components/CustomFont";
 import CustomRow from "@/components/CustomRow";
 import CustomBox from "@/components/CustomBox";
 import CustomButton from "@/components/CustomButton";
+import Modal from "@/components/modal/Modal";
 import { useRouter } from "next/navigation";
 
 import { startReadAPI } from "../api/startReadAPI";
@@ -17,6 +18,7 @@ export default function Timer({ bookDetails }: { bookDetails: { bookId: number; 
     const [completeButtonText, setCompleteButtonText] = useState("완독했어요");
     const timerRef = useRef<number | null>(null);
     const router = useRouter();
+    const [errorModal, setErrorModal] = useState(false);
 
     // 컴포넌트 로드 시 전달받은 lastTime으로 초기화
     useEffect(() => {
@@ -76,11 +78,19 @@ export default function Timer({ bookDetails }: { bookDetails: { bookId: number; 
     // 완독했어요/또 읽을래요 버튼
     const handleComplete = async () => {
         if (completeButtonText === "완독했어요") {
-            // '완독했어요' 버튼 클릭 시 endReadAPI 호출
             if (bookDetails) {
-                await endReadAPI(bookDetails.bookId);
-                setCompleteButtonText("또 읽을래요");
-                router.push(`/ruminatepage?shelfBookId=${bookDetails.bookId}`);
+                try {
+                    const response = await endReadAPI(bookDetails.bookId);
+                    if (response.status === 400) {
+                        setErrorModal(true); // 에러 모달 활성화
+                    } else {
+                        setCompleteButtonText("또 읽을래요");
+                        router.push(`/ruminatepage?shelfBookId=${bookDetails.bookId}`);
+                    }
+                } catch (error) {
+                    console.error("endReadAPI 호출 중 오류 발생:", error);
+                    setErrorModal(true); // 에러 발생 시 모달 활성화
+                }
             }
         } else if (completeButtonText === "또 읽을래요") {
             // '또 읽을래요' 버튼 클릭 시 againReadAPI 호출
@@ -90,6 +100,13 @@ export default function Timer({ bookDetails }: { bookDetails: { bookId: number; 
             }
         }
     };
+
+    const handleModalOpen = () => {
+        setErrorModal(true);
+    }
+    const handleModalClose = () => {
+        setErrorModal(false);
+    }
 
     return (
         <CustomBox $width="90%" $height="20rem" $backgroundcolor="#C5A260" $borderradius="2rem" $padding="2rem" $alignitems="center" $justifycontent="center">
@@ -127,6 +144,16 @@ export default function Timer({ bookDetails }: { bookDetails: { bookId: number; 
                     </CustomButton>
                 </CustomRow>
             </CustomColumn>
+            {errorModal && (
+                <Modal onClose={handleModalClose}>
+                    <CustomColumn $width="100%" $alignitems="center" $justifycontent="center" $gap='1rem'>
+                        <CustomFont $color='black' $font='1rem'>독서를 시작해야 완독 처리를 할 수 있습니다!</CustomFont>
+                        <CustomButton $width='auto' $height='auto' $padding="0.5rem" $backgroundColor="#473322" onClick={handleModalClose}>
+                            <CustomFont $color='white' $font='1rem'>확인</CustomFont>
+                        </CustomButton>
+                    </CustomColumn>
+                </Modal>
+            )}
         </CustomBox>
     );
 }
