@@ -80,6 +80,7 @@ export default function Timer({ bookDetails }: { bookDetails: { bookId: number; 
             if (bookDetails) {
                 await endReadAPI(bookDetails.bookId);
                 setCompleteButtonText("또 읽을래요");
+                router.push("/ruminatepage");
             }
         } else if (completeButtonText === "또 읽을래요") {
             // '또 읽을래요' 버튼 클릭 시 againReadAPI 호출
