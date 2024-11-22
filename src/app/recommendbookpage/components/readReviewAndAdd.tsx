@@ -49,23 +49,31 @@ export default function ReadReviewAndAdd({ books }: { books: Book[] }) {
 	const [activeButtons, setActiveButtons] = useState<number[]>([]);
 	const [reviews, setReviews] = useState<string[][]>([]); // 리뷰 데이터
 	const [modal, setModal] = useState(false);
+	const [modalMessage, setModalMessage] = useState("");
 
 	const handleButtonClick = async (index: number, title: string) => {
 		try {
 			const response = await addBookByAPI(title);
 			console.log("책 추가 성공:", response);
 			setModal(true);
+			setModalMessage("이 책을 책장에 꽂았어요!");
 
 			// 버튼 활성화 상태 변경
 			setActiveButtons((prevState) =>
 				prevState.includes(index)
 					? prevState.filter((i) => i !== index)
-					: [...prevState, index] // 새로운 버튼 추가
+					: [...prevState, index]
 			);
-		} catch (error) {
+		} catch (error: any) {
 			console.error("책 추가 중 오류:", error);
+
+			if (error) {
+				setModal(true);
+				setModalMessage("이미 책장에 꽂아둔 책입니다!");
+			}
 		}
 	};
+
 
 	const handleModalOpen = () => {
 		setModal(true);
@@ -145,7 +153,7 @@ export default function ReadReviewAndAdd({ books }: { books: Book[] }) {
 				<Modal onClose={handleModalClose}>
 					<CustomColumn $width="100%" $alignitems="center" $justifycontent="center">
 						<CustomFont $color='black' $font='0.8rem'>
-							이 책을 책장에 꽂았어요!
+							{modalMessage}
 						</CustomFont>
 
 						<CustomButton $width='auto' $height='auto' $padding='0.5rem' $alignItems="center" $justifyContent="center"
