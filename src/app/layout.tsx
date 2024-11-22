@@ -25,13 +25,19 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+            <head>
+                {/* 일반 script 태그로 카카오 SDK 추가 */}
+                <script src="https://developers.kakao.com/sdk/js/kakao.js" async></script>
+                <script
+                    type="text/javascript"
+                    src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KAKAOAPI}&autoload=false&libraries=services,clusterer,drawing`}
+                ></script>
+            </head>
             <body>
                 <ReactQueryProvider>
                     <Container>{children}</Container>
                 </ReactQueryProvider>
             </body>
-            <Script src="https://developers.kakao.com/sdk/js/kakao.js" async />
-            <Script type="text/javascript" src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_MAP_KAKAOAPI}&autoload=false&libraries=services,clusterer,drawing`} />
         </html>
     );
 }
