@@ -23,32 +23,20 @@ const UI = () => {
     const [review, setReview] = useState("");
     const [bookmarkId, setBookMarkId] = useState(0);
 
-    const { data = [] } = useQuery({
-        queryKey: ["bookmark"],
-        queryFn: () => getBookMark(shelfBookId),
-    });
-
+    const { data } = useQuery({ queryKey: ["bookmark", shelfBookId], queryFn: () => getBookMark(shelfBookId) });
     const bookId = localStorage.getItem("bookId");
     const postReiveMutation = useMutation({
         mutationFn: () => postReview(Number(bookId), review),
-        onSuccess: () => {
-            setReview("");
-            queryClient.invalidateQueries({ queryKey: ["bookmark"] });
-        },
     });
     console.log(data);
-    console.log(bookId)
+    console.log(bookId);
     return (
         <>
             <Header />
             <CustomColumn $gap="4rem">
                 <CustomColumn $width="100%" $alignitems="center" $justifycontent="center" $gap="1rem">
-                    <p className="text-[#544681] font-bold text-base">
-                        완독을 축하드립니다!
-                    </p>
-                    <p className="text-[#544681] font-bold text-base">
-                        오늘의 독서를 반추해보세요
-                    </p>
+                    <p className="text-[#544681] font-bold text-base">완독을 축하드립니다!</p>
+                    <p className="text-[#544681] font-bold text-base">오늘의 독서를 반추해보세요</p>
                 </CustomColumn>
 
                 <Review review={review} setReview={setReview} />

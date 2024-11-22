@@ -80,7 +80,7 @@ export default function Timer({ bookDetails }: { bookDetails: { bookId: number; 
             if (bookDetails) {
                 await endReadAPI(bookDetails.bookId);
                 setCompleteButtonText("또 읽을래요");
-                router.push("/ruminatepage");
+                router.push(`/ruminatepage?shelfBookId=${bookDetails.bookId}`);
             }
         } else if (completeButtonText === "또 읽을래요") {
             // '또 읽을래요' 버튼 클릭 시 againReadAPI 호출
@@ -120,16 +120,7 @@ export default function Timer({ bookDetails }: { bookDetails: { bookId: number; 
                         </CustomButton>
                     </CustomColumn>
 
-                    <CustomButton
-                        $width="50%"
-                        $height="100%"
-                        $alignItems="center"
-                        $justifyContent="center"
-                        $backgroundColor="#136D6C"
-                        $borderRadius="1rem"
-                        $padding="1rem"
-                        onClick={handleComplete}
-                    >
+                    <CustomButton $width="50%" $height="100%" $alignItems="center" $justifyContent="center" $backgroundColor="#136D6C" $borderRadius="1rem" $padding="1rem" onClick={handleComplete}>
                         <CustomFont $color="white" $fontweight="bold">
                             {completeButtonText}
                         </CustomFont>
