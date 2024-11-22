@@ -54,8 +54,8 @@ export default function NowReadingBook({ bookDetails }: { bookDetails: { bookId:
 			const message = error.status === "또읽을책"
 				? "또 읽을 책으로 추가하였습니다!"
 				: error?.status === "다른 상태"
-					? "책을 다 읽으신 후 또 읽을 책으로 등록이 가능합니다!"
-					: "상태가 변경되었습니다.";
+					? "상태가 변경되었습니다."
+					: "책을 다 읽으신 후 또 읽을 책으로 등록이 가능합니다!";
 
 			handleOpenModal(message);
 		}
