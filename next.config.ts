@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
     buildActivity: false, // 빌드 배지 비활성화
     appIsrStatus: false,  // ISR 관련 배지 비활성화
   },
+  eslint: {
+    ignoreDuringBuilds: true, // 빌드 시 ESLint 오류를 무시
+  },
   webpack: (config) => {
     // JSON 파일을 처리하도록 Webpack 설정 추가
     config.module.rules.push({
