@@ -7,7 +7,13 @@ import CustomRow from "@/components/CustomRow";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/navigation";
 
-export default function DoneRead({ books }: { books: any[] }) {
+interface Book {
+	shelfBookId: number;
+	title: string;
+	coverImageUrl: string | null;
+}
+
+export default function DoneRead({ books }: { books: Book[] }) {
 	const router = useRouter();
 
 	const handleBookClick = (bookId: number) => {

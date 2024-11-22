@@ -11,10 +11,10 @@ import ArrowButton from "@/app/homepage/components/ArrowButton";
 
 interface BookMarkModalProps {
     onClose: () => void;
-    input: number; 
-    setInput: Dispatch<SetStateAction<number>>; 
-    textArea: string; 
-    setTextArea: Dispatch<SetStateAction<string>>; 
+    input: number;
+    setInput: Dispatch<SetStateAction<number>>;
+    textArea: string;
+    setTextArea: Dispatch<SetStateAction<string>>;
 }
 
 export default function BookMarkModal({ onClose, input, setInput, textArea, setTextArea }: BookMarkModalProps) {

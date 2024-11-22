@@ -74,11 +74,6 @@ export default function ReadReviewAndAdd({ books }: { books: Book[] }) {
 		}
 	};
 
-
-	const handleModalOpen = () => {
-		setModal(true);
-	}
-
 	const handleModalClose = () => {
 		setModal(false);
 	}

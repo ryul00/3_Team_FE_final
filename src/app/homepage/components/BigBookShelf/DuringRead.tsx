@@ -7,7 +7,13 @@ import CustomRow from "@/components/CustomRow";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/navigation";
 
-export default function DuringRead({ books }: { books: any[] }) {
+interface Book {
+	shelfBookId: number;
+	title: string;
+	coverImageUrl: string | null;
+}
+
+export default function DuringRead({ books }: { books: Book[] }) {
 
 	const handleBookClick = (bookId: number) => {
 		// books 전체 데이터를 로컬 스토리지에 저장

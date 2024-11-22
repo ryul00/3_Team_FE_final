@@ -7,7 +7,13 @@ import CustomRow from "@/components/CustomRow";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/navigation";
 
-export default function NeverRead({ books }: { books: any[] }) {
+interface Book {
+	shelfBookId: number;
+	title: string;
+	coverImageUrl: string | null;
+}
+
+export default function NeverRead({ books }: { books: Book[] }) {
 	// console.log('books는', books);
 	const router = useRouter();
 

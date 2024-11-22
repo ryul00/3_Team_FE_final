@@ -7,9 +7,7 @@ import LogoutModal from "./components/modal/LogoutModal";
 import UnlinkModal from "./components/modal/UnlinkModal";
 import { useState } from "react";
 
-
-
-const UserInfoBox = ({ kakaoId }:{kakaoId:string|undefined}) => {
+const UserInfoBox = ({ kakaoId }: { kakaoId: string | undefined }) => {
     const [isUnlinkModalOpen, setIsUnlinkModalOpen] = useState(false);
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
