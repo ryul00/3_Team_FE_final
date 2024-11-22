@@ -22,6 +22,28 @@ const nextConfig: NextConfig = {
 
     return config;
   },
+
+  async headers() {
+    return [
+      {
+        source: '/:path*', // 모든 경로에 CORS 적용
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*', // 모든 도메인 허용
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, PUT, DELETE, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'X-Requested-With, Content-Type, Authorization',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
