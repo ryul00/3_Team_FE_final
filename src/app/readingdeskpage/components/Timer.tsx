@@ -147,9 +147,9 @@ export default function Timer({ bookDetails }: { bookDetails: { bookId: number; 
             {errorModal && (
                 <Modal onClose={handleModalClose}>
                     <CustomColumn $width="100%" $alignitems="center" $justifycontent="center" $gap='1rem'>
-                        <CustomFont $color='black' $font='1rem'>독서를 시작해야 완독 처리를 할 수 있습니다!</CustomFont>
-                        <CustomButton $width='auto' $height='auto' $padding="0.5rem" $backgroundColor="#473322" onClick={handleModalClose}>
-                            <CustomFont $color='white' $font='1rem'>확인</CustomFont>
+                        <CustomFont $color='black' $font='0.8rem'>독서를 시작해야 완독 처리를 할 수 있습니다!</CustomFont>
+                        <CustomButton $width='auto' $height='auto' $padding="0.3rem" $backgroundColor="#473322" onClick={handleModalClose}>
+                            <CustomFont $color='white' $font='0.8rem'>확인</CustomFont>
                         </CustomButton>
                     </CustomColumn>
                 </Modal>
