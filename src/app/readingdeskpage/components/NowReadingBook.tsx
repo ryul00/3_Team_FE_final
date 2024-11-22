@@ -36,13 +36,18 @@ export default function NowReadingBook({ bookDetails }: { bookDetails: { bookId:
 			const response = await addFavoriteAPI(bookDetails.bookId);
 
 			if (response.status === 200) {
-				const message = response.shelfBook?.status === "또읽을책"
-					? "또 읽을 책으로 추가하였습니다!"
-					: "책을 다 읽으신 후 또 읽을 책으로 등록이 가능합니다!" || "상태가 변경되었습니다.";
+				let message = "상태가 변경되었습니다.";
+
+				if (response.shelfBook?.status === "또읽을책") {
+					message = "또 읽을 책으로 추가하였습니다!";
+				} else if (response.shelfBook?.status === "다른 상태") {
+					message = "책을 다 읽으신 후 또 읽을 책으로 등록이 가능합니다!";
+				}
 
 				handleOpenModal(message);
 				setIsFavorite(true); // 요청 성공 시 별 버튼 노랗게 됨
 			}
+
 		} catch (error: any) {
 			console.log("에러 객체:", error);
 

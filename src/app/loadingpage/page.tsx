@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
 import CustomColumn from "@/components/CustomColumn";
 import StyledImg from "@/components/StyledImg";
 import "./loading.css";
 
-export default function LoadingPage() {
+function LoadingContent() {
 	const searchParams = useSearchParams();
 	const message = searchParams.get("message");
 	const router = useRouter();
@@ -25,9 +25,7 @@ export default function LoadingPage() {
 				console.log("ISBN API 호출 성공, 응답 데이터:", data);
 
 				const books = data.books || [];
-				// 맨 앞부터 10개만 추출
 				const top10Books = books.slice(0, 10);
-				// 랜덤으로 3개 선택
 				const selectedBooks = top10Books
 					.sort(() => Math.random() - 0.5)
 					.slice(0, 3)
@@ -72,5 +70,13 @@ export default function LoadingPage() {
 				<p className="text-[#856FCA] font-bold text-base">잠시만 기다려주세요...</p>
 			</CustomColumn>
 		</CustomColumn>
+	);
+}
+
+export default function LoadingPage() {
+	return (
+		<Suspense fallback={<div>로딩 중...</div>}>
+			<LoadingContent />
+		</Suspense>
 	);
 }

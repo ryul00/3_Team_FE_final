@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import CustomColumn from "@/components/CustomColumn";
 import Header from "../homepage/components/Header";
@@ -10,8 +10,7 @@ import ReadReviewAndAdd from "./components/readReviewAndAdd";
 import BannerAds from "./components/bannerAds";
 import NextStepButton from "./components/NextStepButton";
 
-export default function RecommendBookPage() {
-
+function RecommendBookContent() {
 	const searchParams = useSearchParams();
 	const booksParam = searchParams.get("books");
 	const books = booksParam ? JSON.parse(decodeURIComponent(booksParam)) : [];
@@ -36,5 +35,13 @@ export default function RecommendBookPage() {
 			<BannerAds />
 			<NextStepButton />
 		</CustomColumn>
+	);
+}
+
+export default function RecommendBookPage() {
+	return (
+		<Suspense fallback={<div>로딩 중...</div>}>
+			<RecommendBookContent />
+		</Suspense>
 	);
 }
