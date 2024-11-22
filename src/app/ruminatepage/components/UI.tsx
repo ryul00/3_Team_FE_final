@@ -4,7 +4,7 @@ import CustomColumn from "@/components/CustomColumn";
 import Review from "./Review";
 import ImagePicker from "./ImagePicker";
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getBookMark, postReview } from "@/app/actions/ruminate.action";
 import { queryClient } from "@/config/ReactQueryProvider";
@@ -22,11 +22,13 @@ const UI = () => {
     const shelfBookId = Number(searchParams.get("shelfBookId"));
     const [review, setReview] = useState("");
     const [bookmarkId, setBookMarkId] = useState(0);
+    const router=useRouter()
 
     const { data } = useQuery({ queryKey: ["bookmark", shelfBookId], queryFn: () => getBookMark(shelfBookId) });
     const bookId = localStorage.getItem("bookId");
     const postReiveMutation = useMutation({
         mutationFn: () => postReview(Number(bookId), review),
+        onSuccess:()=>router.push('/homepage')
     });
     console.log(data);
     console.log(bookId);
