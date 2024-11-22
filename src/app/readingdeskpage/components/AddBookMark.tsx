@@ -10,8 +10,20 @@ import "./coffee.css";
 import { postBookMark } from "@/app/actions/bookmark.action";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/config/ReactQueryProvider";
+import { bookMarkType } from "./BookMarks";
+interface Book {
+    shelfBookId: string;
+    bookmarks: Array<{
+        id: number;
+        page: number;
+        note: string;
+    }>;
+}
+interface AddBookMarkProps {
+    book: Book;
+}
 
-export default function AddBookMark({ book }: { book: any }) {
+export default function AddBookMark({ book }: AddBookMarkProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [input, setInput] = useState(0);
     const [textArea, setTextArea] = useState<string>("");
