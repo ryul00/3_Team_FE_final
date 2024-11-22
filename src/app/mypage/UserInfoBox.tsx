@@ -3,14 +3,11 @@ import CustomButton from "@/components/CustomButton";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
 import StyledImg from "@/components/StyledImg";
-
 import LogoutModal from "./components/modal/LogoutModal";
 import UnlinkModal from "./components/modal/UnlinkModal";
-
-import { fetchData } from "@/api/fetchData";
 import { useState } from "react";
-import { unLinkUser } from "../actions/user.action";
-import CustomFont from "@/components/CustomFont";
+
+
 
 const UserInfoBox = ({ kakaoId }:{kakaoId:string|undefined}) => {
     const [isUnlinkModalOpen, setIsUnlinkModalOpen] = useState(false);

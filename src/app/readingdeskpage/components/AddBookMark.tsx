@@ -3,10 +3,8 @@
 import React, { useState } from "react";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
-
 import ArrowButton from "@/app/homepage/components/ArrowButton";
 import StyledImg from "@/components/StyledImg";
-
 import BookMarkModal from "./bookmarkmodal/BookMarkModal";
 import "./coffee.css";
 import { postBookMark } from "@/app/actions/bookmark.action";
@@ -15,7 +13,7 @@ import { queryClient } from "@/config/ReactQueryProvider";
 
 export default function AddBookMark({ book }: { book: any }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [input, setInput] = useState<number>(0);
+    const [input, setInput] = useState(0);
     const [textArea, setTextArea] = useState<string>("");
 
     const handleOpenModal = () => {

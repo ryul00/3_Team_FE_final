@@ -1,21 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import Modal from "@/components/modal/Modal";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
 import CustomFont from "@/components/CustomFont";
-
 import ModalInputField from "@/components/modal/ModalInputField";
 import ModalTextArea from "@/components/modal/ModalTextArea";
 import ArrowButton from "@/app/homepage/components/ArrowButton";
 
 interface BookMarkModalProps {
     onClose: () => void;
-    input: any ;
-    setInput: any;
-    textArea: string|undefined;
-    setTextArea: any;
+    input: number; 
+    setInput: Dispatch<SetStateAction<number>>; 
+    textArea: string; 
+    setTextArea: Dispatch<SetStateAction<string>>; 
 }
 
 export default function BookMarkModal({ onClose, input, setInput, textArea, setTextArea }: BookMarkModalProps) {

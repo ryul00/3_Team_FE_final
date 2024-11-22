@@ -1,5 +1,4 @@
 'use server'
-import { setAuthCookies } from "@/app/utils/serverCookie";
 import { NextRequest, NextResponse } from "next/server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";

@@ -1,27 +1,26 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CustomColumn from "@/components/CustomColumn";
 import CustomFont from "@/components/CustomFont";
 import CustomRow from "@/components/CustomRow";
 import CustomBox from "@/components/CustomBox";
 import CustomButton from "@/components/CustomButton";
-
 import ManageBookMarkModal from "./bookmarkmodal/ManageBookMarkModal";
 import { getBookMark } from "@/app/actions/ruminate.action";
-import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
 export interface bookMarkType {
     pageNumber: number;
     content: string;
     bookmarkId: number;
+    shelfBookId: number;
 }
 
 // 20글자 넘는 문장은 말줄임
 const truncateText = (text: string, limit: number = 20): string => (text?.length > limit ? `${text.slice(0, limit)}...` : text);
 
-export default function BookMarks({ book }: { book: any }) {
+export default function BookMarks({ book }: { book: bookMarkType }) {
     const [bookmarks, setBookmarks] = useState<bookMarkType[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { data } = useQuery({
