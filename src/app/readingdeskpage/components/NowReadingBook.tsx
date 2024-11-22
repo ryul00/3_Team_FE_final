@@ -46,10 +46,11 @@ export default function NowReadingBook({ bookDetails }: { bookDetails: { bookId:
 		} catch (error: any) {
 			console.log("에러 객체:", error);
 
-			const message =
-				typeof error === "object" && error.message
+			const message = error.status === "또읽을책"
+				? "또 읽을 책으로 추가하였습니다!"
+				: error?.status === "다른 상태"
 					? "책을 다 읽으신 후 또 읽을 책으로 등록이 가능합니다!"
-					: "알 수 없는 오류가 발생했습니다.";
+					: "상태가 변경되었습니다.";
 
 			handleOpenModal(message);
 		}
