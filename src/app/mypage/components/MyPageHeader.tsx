@@ -1,6 +1,5 @@
 "use client";
 
-import StyledImg from "@/components/StyledImg";
 import CustomRow from "@/components/CustomRow";
 import CustomButton from "@/components/CustomButton";
 import { FaHome } from "react-icons/fa";

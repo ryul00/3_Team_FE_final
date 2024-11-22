@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CustomColumn from "@/components/CustomColumn";
 import CustomFont from "@/components/CustomFont";
 import CustomRow from "@/components/CustomRow";
@@ -9,7 +9,6 @@ import CustomButton from "@/components/CustomButton";
 
 import ManageBookMarkModal from "./bookmarkmodal/ManageBookMarkModal";
 import { getBookMark } from "@/app/actions/ruminate.action";
-import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
 export interface bookMarkType {

@@ -82,14 +82,14 @@ export default function Timer({ bookDetails }: { bookDetails: { bookId: number; 
                 try {
                     const response = await endReadAPI(bookDetails.bookId);
                     if (response.status === 400) {
-                        setErrorModal(true); // 에러 모달 활성화
+                        setErrorModal(true);
                     } else {
                         setCompleteButtonText("또 읽을래요");
                         router.push(`/ruminatepage?shelfBookId=${bookDetails.bookId}`);
                     }
                 } catch (error) {
                     console.error("endReadAPI 호출 중 오류 발생:", error);
-                    setErrorModal(true); // 에러 발생 시 모달 활성화
+                    setErrorModal(true);
                 }
             }
         } else if (completeButtonText === "또 읽을래요") {

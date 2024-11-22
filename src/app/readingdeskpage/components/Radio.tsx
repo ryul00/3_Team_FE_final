@@ -1,10 +1,8 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import CustomColumn from "@/components/CustomColumn";
 import CustomFont from "@/components/CustomFont";
 import StyledImg from "@/components/StyledImg";
-import CustomRow from "@/components/CustomRow";
 import CustomButton from "@/components/CustomButton";
 
 export default function Radio() {

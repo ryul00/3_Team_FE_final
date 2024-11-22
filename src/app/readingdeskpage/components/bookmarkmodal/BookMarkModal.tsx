@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Modal from "@/components/modal/Modal";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
@@ -12,9 +12,9 @@ import ArrowButton from "@/app/homepage/components/ArrowButton";
 
 interface BookMarkModalProps {
     onClose: () => void;
-    input: any ;
+    input: any;
     setInput: any;
-    textArea: string|undefined;
+    textArea: string | undefined;
     setTextArea: any;
 }
 

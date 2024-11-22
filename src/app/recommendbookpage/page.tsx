@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import CustomColumn from "@/components/CustomColumn";
 import Header from "../homepage/components/Header";
-import CustomButton from "@/components/CustomButton";
 
 import Books from "./components/books";
 import ReadReviewAndAdd from "./components/readReviewAndAdd";

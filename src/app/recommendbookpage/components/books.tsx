@@ -3,7 +3,6 @@
 import React, { useEffect } from "react";
 import CustomColumn from "@/components/CustomColumn";
 import CustomRow from "@/components/CustomRow";
-import CustomFont from "@/components/CustomFont";
 import { sendBooksToAPI } from "../api/sendBooksToAPI";
 
 interface Book {

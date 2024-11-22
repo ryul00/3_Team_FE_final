@@ -10,7 +10,6 @@ interface CustomBoxRoundProps {
 	$justifycontent?: string;
 	className?: string;
 	children?: React.ReactNode;
-	minHeight?: string;
 }
 
 const CustomBoxRound: React.FC<CustomBoxRoundProps> = ({
@@ -21,7 +20,6 @@ const CustomBoxRound: React.FC<CustomBoxRoundProps> = ({
 	$alignitems = "flex-start",
 	$justifycontent = "flex-start",
 	className = "",
-	minHeight = "10rem",
 	children,
 }) => {
 	return (

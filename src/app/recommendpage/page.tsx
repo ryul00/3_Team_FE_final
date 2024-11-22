@@ -3,9 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import CustomColumn from "@/components/CustomColumn";
-import CustomRow from "@/components/CustomRow";
 import Header from "../homepage/components/Header";
-import CustomButton from "@/components/CustomButton";
 
 import YourFeeling from "./components/YourFeeling";
 import YourGenre from "./components/YourGenre";
