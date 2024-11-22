@@ -23,7 +23,7 @@ const UI = () => {
     const [review, setReview] = useState("");
     const [bookmarkId, setBookMarkId] = useState(0);
 
-    const { data } = useQuery({
+    const { data = [] } = useQuery({
         queryKey: ["bookmark"],
         queryFn: () => getBookMark(shelfBookId),
     });
@@ -59,21 +59,25 @@ const UI = () => {
                     </CustomRow>
 
                     <div className="w-full border-2 border-[#7A6B52] text-[#7A6B52] rounded-3xl overflow-y-auto h-32 px-5 py-3">
-                        {data?.map((item: bookType) => (
-                            <div
-                                className="flex justify-around items-center hover:cursor-pointer w-full hover:bg-white"
-                                key={item.bookmarkId}
-                                onClick={() => {
-                                    setBookMarkId(item.bookmarkId);
-                                }}
-                            >
-                                <div className="flex w-1/4 ">
-                                    <div className="w-1/2">{item.pageNumber}</div>
-                                    <div>쪽</div>
+                        {Array.isArray(data) && data.length > 0 ? (
+                            data.map((item: bookType) => (
+                                <div
+                                    className="flex justify-around items-center hover:cursor-pointer w-full hover:bg-white"
+                                    key={item.bookmarkId}
+                                    onClick={() => {
+                                        setBookMarkId(item.bookmarkId);
+                                    }}
+                                >
+                                    <div className="flex w-1/4 ">
+                                        <div className="w-1/2">{item.pageNumber}</div>
+                                        <div>쪽</div>
+                                    </div>
+                                    <div className="w-1/3 flex justify-center">{item.content}</div>
                                 </div>
-                                <div className="w-1/3 flex justify-center">{item.content}</div>
-                            </div>
-                        ))}
+                            ))
+                        ) : (
+                            <p className="text-[#7A6B52]">책갈피가 없습니다.</p>
+                        )}
                     </div>
                 </CustomColumn>
 

@@ -25,7 +25,10 @@ export default function LoadingPage() {
 				console.log("ISBN API 호출 성공, 응답 데이터:", data);
 
 				const books = data.books || [];
-				const selectedBooks = books
+				// 맨 앞부터 10개만 추출
+				const top10Books = books.slice(0, 10);
+				// 랜덤으로 3개 선택
+				const selectedBooks = top10Books
 					.sort(() => Math.random() - 0.5)
 					.slice(0, 3)
 					.map((book: any) => ({

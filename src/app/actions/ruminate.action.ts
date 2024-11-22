@@ -9,7 +9,7 @@ export const getBookMark = async (shelfBookId: number) => {
         return data;
     } catch (error: any) {
         if (error.message.includes("HTTP ERROR, STATUS:400")) {
-            console.log("책갈피가 없다");
+            console.log("등록된 책갈피가 없습니다!");
         } else {
             console.error("데이터 요청 중 에러 발생:", error);
         }
