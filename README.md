@@ -146,6 +146,18 @@
 <table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
+      <strong>가장 가까운 도서관 안내</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <img src="gif/nearLibrary.gif" width="300px">
+    </td>
+  </tr>
+</table>
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
       <strong>근처 도서관 조회</strong>
     </td>
   </tr>
