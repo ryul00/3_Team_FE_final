@@ -178,7 +178,9 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-    <video src="gif/별책부록-시연영상.mp4" controls width="300"></video>
+
+[![데모 시나리오](https://img.youtube.com/vi/vCadzcZWhLM/0.jpg)](https://www.youtube.com/watch?v=vCadzcZWhLM)
+
     </td>
   </tr>
 </table>
