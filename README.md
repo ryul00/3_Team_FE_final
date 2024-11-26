@@ -50,7 +50,7 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <img src="gif/login.gif" width="800px">
+      <img src="gif/login.gif" width="200px">
     </td>
   </tr>
 </table>
