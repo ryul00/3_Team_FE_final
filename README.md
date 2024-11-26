@@ -169,25 +169,7 @@
 </table>
 ## 🎥 데모 시나리오 영상
 
-<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
-  <tr>
-    <td align="center" style="border: 1px solid #ddd;">
-      <strong>데모 시나리오</strong>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" style="border: 1px solid #ddd;">
-      <iframe 
-        src="https://www.youtube.com/embed/vCadzcZWhLM" 
-        width="300" 
-        height="169" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen
-      ></iframe>
-    </td>
-  </tr>
-</table>
+[![데모 시나리오](https://img.youtube.com/vi/vCadzcZWhLM/0.jpg)](https://www.youtube.com/watch?v=vCadzcZWhLM)
 
 
 
