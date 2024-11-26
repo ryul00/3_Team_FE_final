@@ -1,42 +1,49 @@
 # 🌠 상부 3조 🌠
+
 <p align="center">
   ⭐️ 현대인이 독서를 통해 정서적인 돌봄을 받고 힐링할 수 있는 서비스 - 별책부록 ⭐️
 </p>
 
 ## 🧑‍💻 멤버
-|이름|[이나영](https://github.com/Bewheneverwhatiwant)|[황유빈](https://github.com/ppinppini)|[김가현](https://github.com/eunxeum)|[원정아](https://github.com/tjdals4716)|[유광렬](https://github.com/Zero982)|
-|:---:|:---:|:---:|:---:|:---:|:---:|
-|프로필|<img src="https://avatars.githubusercontent.com/u/100694715?v=4"/>|<img src="https://avatars.githubusercontent.com/u/97329194?v=4"/>|<img src="https://avatars.githubusercontent.com/u/115142931?v=4"/>|<img src="https://avatars.githubusercontent.com/u/165775691?v=4"/>|<img src="https://avatars.githubusercontent.com/u/129136966?v=4"/>|
-|역할|<img src="https://skillicons.dev/icons?i=next">|<img src="https://skillicons.dev/icons?i=next">|<img src="https://skillicons.dev/icons?i=spring">|<img src="https://skillicons.dev/icons?i=spring">|<img src="https://skillicons.dev/icons?i=spring">|
+
+|  이름  |          [이나영](https://github.com/Bewheneverwhatiwant)          |              [황유빈](https://github.com/ppinppini)               |                [김가현](https://github.com/eunxeum)                |              [원정아](https://github.com/tjdals4716)               |                [유광렬](https://github.com/Zero982)                |
+| :----: | :----------------------------------------------------------------: | :---------------------------------------------------------------: | :----------------------------------------------------------------: | :----------------------------------------------------------------: | :----------------------------------------------------------------: |
+| 프로필 | <img src="https://avatars.githubusercontent.com/u/100694715?v=4"/> | <img src="https://avatars.githubusercontent.com/u/97329194?v=4"/> | <img src="https://avatars.githubusercontent.com/u/115142931?v=4"/> | <img src="https://avatars.githubusercontent.com/u/165775691?v=4"/> | <img src="https://avatars.githubusercontent.com/u/129136966?v=4"/> |
+|  역할  |          <img src="https://skillicons.dev/icons?i=next">           |          <img src="https://skillicons.dev/icons?i=next">          |         <img src="https://skillicons.dev/icons?i=spring">          |         <img src="https://skillicons.dev/icons?i=spring">          |         <img src="https://skillicons.dev/icons?i=spring">          |
 
 ## 📝 서비스 소개
-- 우리는 현재 대한민국의 유행 중 하나인"독서"를 활성화 하고 우울감에 빠진 현대인들이 정서를 "독서"를 통해 치유하고 더불어 나아가, 자극적인 콘텐츠에 따른 도파민 중독에 빠진 사람들을 독서로 힐링할 수 있게 하고자 해당서비스" 별책부록" 을기획하게 되었습니다.
 
+-   우리는 현재 대한민국의 유행 중 하나인"독서"를 활성화 하고 우울감에 빠진 현대인들이 정서를 "독서"를 통해 치유하고 더불어 나아가, 자극적인 콘텐츠에 따른 도파민 중독에 빠진 사람들을 독서로 힐링할 수 있게 하고자 해당서비스" 별책부록" 을기획하게 되었습니다.
 
 ## 🛠️ 사용 기술
 
 ### 🌏 Front
+
 <p align="center">
 	<img src="https://skillicons.dev/icons?i=next"><img src="https://skillicons.dev/icons?i=tailwindcss"><img src="https://skillicons.dev/icons?i=ts">
 </p>
 
 ### 🌐 Back
+
 <p align="center">
 	<img src="https://skillicons.dev/icons?i=spring"><img src="https://skillicons.dev/icons?i=java">
 </p>
 
 ### 💾 Database
+
 <p align="center">
     <img src="https://skillicons.dev/icons?i=mysql"><img src="https://skillicons.dev/icons?i=aws">
 </p>
 
 ### 🚀 Deployment
+
 <p align="center">
      <img src="https://skillicons.dev/icons?i=vercel">
     <img src="https://skillicons.dev/icons?i=aws">
 </p>
 
 ### 👥 Cooperation
+
 <p align="center">
     <img src="https://skillicons.dev/icons?i=git"><img src="https://skillicons.dev/icons?i=github"><img src="https://skillicons.dev/icons?i=figma"><img src="https://skillicons.dev/icons?i=notion"><img src="https://skillicons.dev/icons?i=discord">
 </p>
@@ -106,7 +113,6 @@
   </tr>
 </table>
 
-
 <table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
@@ -146,6 +152,18 @@
 <table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
+      <strong>가장 가까운 도서관 안내</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <img src="gif/nearLibrary.gif" width="300px">
+    </td>
+  </tr>
+</table>
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
       <strong>근처 도서관 조회</strong>
     </td>
   </tr>
@@ -169,6 +187,7 @@
 </table>
 
 ## 🎥 데모 시나리오 영상
+
 <table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
@@ -177,13 +196,15 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <a href="https://github.com/user-attachments/assets/427eb753-d4cb-48fe-9025-bd189b1cbf00" target="_blank">
-        <video src="gif/별책부록-시연영상.mp4" width="300px" alt="데모 동영상">
-      </a>
+      <iframe 
+        src="https://www.youtube.com/embed/vCadzcZWhLM" 
+        width="300" 
+        height="169" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen
+      ></iframe>
     </td>
   </tr>
 </table>
-
-
-
 
