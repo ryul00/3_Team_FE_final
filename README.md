@@ -173,15 +173,13 @@
 <table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <strong>데모 시나리오</strong>
+      <strong>데모 시나리오 (클릭하면 재생!)</strong>
     </td>
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
 
 [![데모 시나리오](https://img.youtube.com/vi/vCadzcZWhLM/0.jpg)](https://www.youtube.com/watch?v=vCadzcZWhLM)
-
-    </td>
   </tr>
 </table>
 
