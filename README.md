@@ -41,64 +41,149 @@
     <img src="https://skillicons.dev/icons?i=git"><img src="https://skillicons.dev/icons?i=github"><img src="https://skillicons.dev/icons?i=figma"><img src="https://skillicons.dev/icons?i=notion"><img src="https://skillicons.dev/icons?i=discord">
 </p>
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
-      <tr>
-        <td align="center" style="border: 1px solid #ddd;">
-          <strong>로그인 페이지</strong>
-        </td>
-      </tr>
-      <tr>
-        <td align="center" style="border: 1px solid #ddd;">
-          <img src="gif/login.gif" width="300px">
-        </td>
-      </tr>
-    </table>
-  </div>
+## 💻 웹페이지 최종 동작
 
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
-      <tr>
-        <td align="center" style="border: 1px solid #ddd;">
-          <strong>서재 조회</strong>
-        </td>
-      </tr>
-      <tr>
-        <td align="center" style="border: 1px solid #ddd;">
-          <img src="gif/getBook.gif" alt="이미지" width="300px">
-        </td>
-      </tr>
-    </table>
-  </div>
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <strong>로그인 페이지</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <img src="gif/login.gif" width="300px">
+    </td>
+  </tr>
+</table>
 
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
-      <tr>
-        <td align="center" style="border: 1px solid #ddd;">
-          <strong>AI 책 추천</strong>
-        </td>
-      </tr>
-      <tr>
-        <td align="center" style="border: 1px solid #ddd;">
-          <img src="gif/ai-recommend.gif" width="300px">
-        </td>
-      </tr>
-    </table>
-  </div>
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <strong>서재 조회</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+     <img src="gif/getBook.gif" alt="이미지" width="300px">
+    </td>
+  </tr>
+</table>
 
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
-      <tr>
-        <td align="center" style="border: 1px solid #ddd;">
-          <strong>독서대 타이머</strong>
-        </td>
-      </tr>
-      <tr>
-        <td align="center" style="border: 1px solid #ddd;">
-          <img src="gif/timer.gif" width="300px">
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <strong>AI 책 추천</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <img src="gif/ai-recommend.gif" width="300px">
+    </td>
+  </tr>
+</table>
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <strong>독서대 타이머</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <img src="gif/timer.gif" width="300px">
+    </td>
+  </tr>
+</table>
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <strong>책갈피 추가 및 조회</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <img src="gif/bookMarkAdd.gif" width="300px">
+    </td>
+  </tr>
+</table>
+
+
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <strong>독서대 백색소음</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <img src="gif/asmr.gif" width="300px">
+    </td>
+  </tr>
+</table>
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <strong>또 읽을 책 추가</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <img src="gif/star.gif" width="300px">
+    </td>
+  </tr>
+</table>
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <strong>반추하기</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <img src="gif/review.gif" width="300px">
+    </td>
+  </tr>
+</table>
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <strong>근처 도서관 조회</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <img src="gif/library.gif" width="300px">
+    </td>
+  </tr>
+</table>
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <strong>로그아웃 및 회원탈퇴</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <img src="gif/logout.gif" width="300px">
+    </td>
+  </tr>
+</table>
+
+## 🎥 데모 시나리오 영상
+<table align="center" border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; border: 1px solid #ddd;">
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <strong>데모 시나리오</strong>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" style="border: 1px solid #ddd;">
+      <a href="https://github.com/user-attachments/assets/427eb753-d4cb-48fe-9025-bd189b1cbf00" target="_blank">
+        <video src="gif/별책부록-시연영상.mp4" width="300px" alt="데모 동영상">
+      </a>
+    </td>
+  </tr>
+</table>
+
+
+
+
