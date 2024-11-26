@@ -50,7 +50,7 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <img src="gif/login.gif" width="200px">
+      <img src="gif/login.gif" width="300px">
     </td>
   </tr>
 </table>
@@ -63,7 +63,7 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-     <img src="gif/getBook.gif" alt="이미지" width="800px">
+     <img src="gif/getBook.gif" alt="이미지" width="300px">
     </td>
   </tr>
 </table>
@@ -76,7 +76,7 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <img src="gif/ai-recommend.gif" width="800px">
+      <img src="gif/ai-recommend.gif" width="300px">
     </td>
   </tr>
 </table>
@@ -88,7 +88,7 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <img src="gif/timer.gif" width="800px">
+      <img src="gif/timer.gif" width="300px">
     </td>
   </tr>
 </table>
@@ -100,7 +100,7 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <img src="gif/bookMarkAdd.gif" width="800px">
+      <img src="gif/bookMarkAdd.gif" width="300px">
     </td>
   </tr>
 </table>
@@ -114,7 +114,7 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <img src="gif/asmr.gif" width="800px">
+      <img src="gif/asmr.gif" width="300px">
     </td>
   </tr>
 </table>
@@ -126,7 +126,7 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <img src="gif/star.gif" width="800px">
+      <img src="gif/star.gif" width="300px">
     </td>
   </tr>
 </table>
@@ -138,7 +138,7 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <img src="gif/review.gif" width="800px">
+      <img src="gif/review.gif" width="300px">
     </td>
   </tr>
 </table>
@@ -150,7 +150,7 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <img src="gif/library.gif" width="800px">
+      <img src="gif/library.gif" width="300px">
     </td>
   </tr>
 </table>
@@ -162,7 +162,7 @@
   </tr>
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
-      <img src="gif/logout.gif" width="800px">
+      <img src="gif/logout.gif" width="300px">
     </td>
   </tr>
 </table>
@@ -177,7 +177,7 @@
   <tr>
     <td align="center" style="border: 1px solid #ddd;">
       <a href="https://github.com/user-attachments/assets/427eb753-d4cb-48fe-9025-bd189b1cbf00" target="_blank">
-        <video src="gif/별책부록-시연영상.mp4" width="800px" alt="데모 동영상">
+        <video src="gif/별책부록-시연영상.mp4" width="300px" alt="데모 동영상">
       </a>
     </td>
   </tr>
